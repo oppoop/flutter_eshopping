@@ -1,0 +1,19 @@
+{
+  "test": "測試頁面",
+  "login": "登入",
+  "regist": "註冊",
+  "membercenter": "會員中心",
+  "customservice": "客服中心",
+  "languagechange": "語系切換",
+  "enteremail": "請輸入信箱",
+  "enterpassword": "請輸入密碼",
+  "reenterpasswoed": "請再次輸入密碼",
+  "enterphone": "請輸入電話",
+  "submit": "送出",
+  "home": "首頁",
+  "search": "搜尋",
+  "setting": "設定",
+  "nickName": "暱稱",
+  "phone":"電話",
+  "birth": "生日"
+}
