@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "mail": MessageLookupByLibrary.simpleMessage("信箱"),
         "membercenter": MessageLookupByLibrary.simpleMessage("會員中心"),
+        "myFavorite": MessageLookupByLibrary.simpleMessage("我的最愛"),
+        "newProduct": MessageLookupByLibrary.simpleMessage("新品推薦"),
         "nickName": MessageLookupByLibrary.simpleMessage("暱稱"),
         "phone": MessageLookupByLibrary.simpleMessage("電話"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage("請再次輸入密碼"),

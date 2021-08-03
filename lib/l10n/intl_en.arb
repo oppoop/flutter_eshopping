@@ -22,5 +22,7 @@
   "cartItems": "{number} items",
   "total": "Total",
   "checkOut": "Check Out",
-  "addToCart": "Add to cart"
+  "addToCart": "Add to cart",
+  "newProduct": "NEW Product",
+  "myFavorite": "My Favorite"
 }

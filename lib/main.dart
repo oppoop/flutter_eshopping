@@ -10,8 +10,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
+import 'providers/cart_notifier.dart';
 void main() {
-  runApp(App());
+  runApp(
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CartNotifier>(
+            create: (context) => CartNotifier(),
+          ),
+        ],
+        child: App(),
+      ),
+  );
 }
 class App extends StatelessWidget {
 
@@ -60,12 +70,12 @@ class AppPage extends StatefulWidget {
 
 class _AppState extends State<AppPage> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Home(), Search(), Setting(), Reserve()];
+  final List<Widget> _children = [Home(), Search(),Recommend(),Favorite()];
   final List<Widget> _appBar = [
     HomeBar(),
     SearchBar(),
-    SettingsBar(),
-    ReserveBar()
+    RecommendBar(),
+    FavoriteBar()
   ];
   void onTabTapped(int index) {
     setState(() {
@@ -91,8 +101,8 @@ class _AppState extends State<AppPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: S.of(context).home),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: S.of(context).search),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label:S.of(context).setting),
-          BottomNavigationBarItem(icon: Icon(Icons.ac_unit), label: S.of(context).test),
+          BottomNavigationBarItem(icon: Icon(Icons.local_fire_department), label:S.of(context).newProduct),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: S.of(context).myFavorite),
         ],
       ),
       drawer: Drawer(

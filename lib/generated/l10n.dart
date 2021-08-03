@@ -289,6 +289,26 @@ class S {
       args: [],
     );
   }
+
+  /// `NEW Product`
+  String get newProduct {
+    return Intl.message(
+      'NEW Product',
+      name: 'newProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Favorite`
+  String get myFavorite {
+    return Intl.message(
+      'My Favorite',
+      name: 'myFavorite',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

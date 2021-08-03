@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ReserveBar extends StatelessWidget {
+class RecommendBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('備用'),
+          Text('新品'),
         ],
       ),
     );
   }
 }
-class Reserve extends StatefulWidget {
+class Recommend extends StatefulWidget {
   @override
-  _Reserve createState() => _Reserve();
+  _RecommendState createState() => _RecommendState();
 }
 
-class _Reserve extends State<Reserve>{
+class _RecommendState extends State<Recommend>{
 
   @override
   Widget build(BuildContext context) {

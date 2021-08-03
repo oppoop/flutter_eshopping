@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
+        "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
+        "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage(
