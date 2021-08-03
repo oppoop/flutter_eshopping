@@ -16,5 +16,11 @@
   "nickName": "NiclName",
   "phone":"Phone",
   "birth": "Birth",
-  "mail": "Mail"
+  "mail": "Mail",
+  "cart": "Cart",
+  "emptyCart": "Your cart is empty",
+  "cartItems": "{number} items",
+  "total": "Total",
+  "checkOut": "Check Out",
+  "addToCart": "Add to cart"
 }

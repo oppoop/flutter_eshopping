@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-InputDecoration buildInputDecoration(IconData icons,String hinttext,String? errorMsg,bool hide) {
+InputDecoration buildInputDecoration(IconData? icons,String hintText,String? errorMsg,bool hide) {
   return InputDecoration(
     errorText: errorMsg,
-    hintText: hinttext,
+    hintText: hintText,
     suffixIcon: hide?Icon(Icons.remove_red_eye_outlined):Icon(Icons.remove_red_eye),
     prefixIcon: Icon(icons),
     focusedBorder: OutlineInputBorder(

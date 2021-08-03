@@ -9,7 +9,7 @@ import 'screen/leftList/drawer_change.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
-
+import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 void main() {
   runApp(App());
 }
@@ -80,47 +80,7 @@ class _AppState extends State<AppPage> {
         centerTitle: true,
         title: Container(child: _appBar[_currentIndex]),
         actions: [
-          IconButton(
-              icon: Icon(Icons.mail_outline),
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 220,
-                        color: Colors.transparent,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(2),
-                              child: Column(
-                                children: [
-                                  ClipOval(
-                                      child: Image.network(
-                                        'https://upload.wikimedia.org/wikipedia/zh/b/b6/Honkai_Impact_3.png',
-                                        fit: BoxFit.cover,
-                                        height: 70,
-                                        width: 70,
-                                      )),
-                                  Text('為美好的世界而戰'),
-                                  Divider(height: 5, color: Colors.white)
-                                ],
-                              ),
-                            ),
-                            ListTile(
-                              leading: Icon(Icons.list),
-                              title: Text('列表'),
-                            ),
-                            Divider(height: 2, color: Colors.grey),
-                            ListTile(
-                              leading: Icon(Icons.list),
-                              title: Text('列表2'),
-                            ),
-                          ],
-                        ),
-                      );
-                    });
-              })
+          CartAppBarAction(),
         ],
       ),
       body: _children[_currentIndex],

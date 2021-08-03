@@ -229,6 +229,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Cart`
+  String get cart {
+    return Intl.message(
+      'Cart',
+      name: 'cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your cart is empty`
+  String get emptyCart {
+    return Intl.message(
+      'Your cart is empty',
+      name: 'emptyCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{number} items`
+  String cartItems(Object number) {
+    return Intl.message(
+      '$number items',
+      name: 'cartItems',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Out`
+  String get checkOut {
+    return Intl.message(
+      'Check Out',
+      name: 'checkOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -19,10 +19,17 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_TW';
 
+  static String m0(number) => "${number} 件商品";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addToCart": MessageLookupByLibrary.simpleMessage("加入購物車"),
         "birth": MessageLookupByLibrary.simpleMessage("生日"),
+        "cart": MessageLookupByLibrary.simpleMessage("購物車"),
+        "cartItems": m0,
+        "checkOut": MessageLookupByLibrary.simpleMessage("結帳"),
         "customservice": MessageLookupByLibrary.simpleMessage("客服中心"),
+        "emptyCart": MessageLookupByLibrary.simpleMessage("購物車是空的"),
         "enteremail": MessageLookupByLibrary.simpleMessage("請輸入信箱"),
         "enterpassword": MessageLookupByLibrary.simpleMessage("請輸入密碼"),
         "enterphone": MessageLookupByLibrary.simpleMessage("請輸入電話"),
@@ -38,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("搜尋"),
         "setting": MessageLookupByLibrary.simpleMessage("設定"),
         "submit": MessageLookupByLibrary.simpleMessage("送出"),
-        "test": MessageLookupByLibrary.simpleMessage("測試頁面")
+        "test": MessageLookupByLibrary.simpleMessage("測試頁面"),
+        "total": MessageLookupByLibrary.simpleMessage("總共")
       };
 }

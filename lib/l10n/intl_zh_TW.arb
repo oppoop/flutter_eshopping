@@ -16,5 +16,11 @@
   "nickName": "暱稱",
   "phone":"電話",
   "birth": "生日",
-  "mail": "信箱"
+  "mail": "信箱",
+  "cart": "購物車",
+  "emptyCart": "購物車是空的",
+  "cartItems": "{number} 件商品",
+  "total": "總共",
+  "checkOut": "結帳",
+  "addToCart": "加入購物車"
 }
