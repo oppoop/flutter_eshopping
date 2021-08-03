@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:NMSL/providers/customServiceNotify.dart';
+import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:NMSL/utils/pop_widget.dart';
+import 'package:flutter_eshopping/utils/pop_widget.dart';
 enum reportType {errorScreen,errorAccount,others}
 
 class CustomerService extends StatefulWidget {
@@ -171,7 +171,7 @@ class _CustomerServiceState extends State<CustomerService> {
                 width: MediaQuery.of(context).size.width*0.8,
                 height: 200.0,
                 child: DecoratedBox(
-                  child: Consumer<customServiceNotify>(builder: (context,questins,_){
+                  child: Consumer<CustomServiceNotify>(builder: (context,questins,_){
                     return TextFormField(
                       controller: questionsController,
                       focusNode: questionsFocus,
@@ -191,7 +191,7 @@ class _CustomerServiceState extends State<CustomerService> {
                         ),
                       ),
                       onChanged: (text){
-                        Provider.of<customServiceNotify>(context,listen: false).questionsValiding(fiedValue:questionsController.text);
+                        Provider.of<CustomServiceNotify>(context,listen: false).questionsValiding(fiedValue:questionsController.text);
                       },
                     );
                   }),
@@ -201,8 +201,8 @@ class _CustomerServiceState extends State<CustomerService> {
                   ),)
             ),
             Padding(padding: EdgeInsets.only(bottom: 10)),
-            Consumer<customServiceNotify>(builder:(context,questions,_){
-              return Text('${questions.questionserrorMsg}',style: TextStyle(color: Colors.red,fontSize: 20),);
+            Consumer<CustomServiceNotify>(builder:(context,questions,_){
+              return Text('${questions.questionsErrorMsg}',style: TextStyle(color: Colors.red,fontSize: 20),);
             }),
             Padding(padding: EdgeInsets.only(bottom: 20)),
             ElevatedButton(onPressed: (){},

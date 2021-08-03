@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:NMSL/screen/customerService.dart';
+import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
-import 'package:NMSL/screen/memberScreen/memberCenter.dart';
+import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
 import 'package:flutter_eshopping/providers/member_center_notifier.dart';
 class DrawerStatus {
   final double listSize = 20;
@@ -51,8 +51,8 @@ class DrawerStatus {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider<customServiceNotify>(
-                    create: (context) => customServiceNotify(),
+                  builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
+                    create: (context) => CustomServiceNotify(),
                     child: CustomerService(),
                   ),
                 ),

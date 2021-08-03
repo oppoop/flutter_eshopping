@@ -15,5 +15,6 @@
   "setting": "設定",
   "nickName": "暱稱",
   "phone":"電話",
-  "birth": "生日"
+  "birth": "生日",
+  "mail": "信箱"
 }

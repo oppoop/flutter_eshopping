@@ -16,4 +16,5 @@
   "nickName": "NiclName",
   "phone":"Phone",
   "birth": "Birth",
+  "mail": "Mail"
 }
