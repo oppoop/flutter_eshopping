@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cartItems": m0,
         "checkOut": MessageLookupByLibrary.simpleMessage("Check Out"),
+        "chooseSize": MessageLookupByLibrary.simpleMessage("Choose your size"),
         "customservice": MessageLookupByLibrary.simpleMessage("Custom Service"),
         "emptyCart": MessageLookupByLibrary.simpleMessage("Your cart is empty"),
         "enteremail":
@@ -42,9 +43,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
+        "men": MessageLookupByLibrary.simpleMessage("Men"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
+        "pet": MessageLookupByLibrary.simpleMessage("Pet"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage(
             "Please re-enter the password"),
@@ -53,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "test": MessageLookupByLibrary.simpleMessage("TEST"),
-        "total": MessageLookupByLibrary.simpleMessage("Total")
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "women": MessageLookupByLibrary.simpleMessage("Women")
       };
 }

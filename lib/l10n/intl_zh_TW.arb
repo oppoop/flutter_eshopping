@@ -24,5 +24,9 @@
   "checkOut": "結帳",
   "addToCart": "加入購物車",
   "newProduct": "新品推薦",
-  "myFavorite": "我的最愛"
+  "myFavorite": "我的最愛",
+  "men": "男士",
+  "women": "女士",
+  "pet": "寵物",
+  "chooseSize": "選擇你的尺寸"
 }

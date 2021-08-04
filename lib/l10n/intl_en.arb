@@ -24,5 +24,9 @@
   "checkOut": "Check Out",
   "addToCart": "Add to cart",
   "newProduct": "NEW Product",
-  "myFavorite": "My Favorite"
+  "myFavorite": "My Favorite",
+  "men": "Men",
+  "women": "Women",
+  "pet": "Pet",
+  "chooseSize": "Choose your size"
 }

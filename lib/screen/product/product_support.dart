@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 ListTile _listTile(IconData icon, String tittle,) {
   return ListTile(
-    leading: Icon(icon, color: Colors.black,),
-    title: Text(tittle, style: TextStyle(fontSize: 10, color: Colors.black),),
+    leading: Icon(icon, color: Colors.grey[200],),
+    title: Text(tittle, style: TextStyle(fontSize: 10, color: Colors.grey[200]),),
   );
 }
 List<Widget> productSupport = <Widget>[

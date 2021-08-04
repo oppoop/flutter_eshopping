@@ -309,6 +309,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Men`
+  String get men {
+    return Intl.message(
+      'Men',
+      name: 'men',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Women`
+  String get women {
+    return Intl.message(
+      'Women',
+      name: 'women',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pet`
+  String get pet {
+    return Intl.message(
+      'Pet',
+      name: 'pet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your size`
+  String get chooseSize {
+    return Intl.message(
+      'Choose your size',
+      name: 'chooseSize',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

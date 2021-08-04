@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart": MessageLookupByLibrary.simpleMessage("購物車"),
         "cartItems": m0,
         "checkOut": MessageLookupByLibrary.simpleMessage("結帳"),
+        "chooseSize": MessageLookupByLibrary.simpleMessage("選擇你的尺寸"),
         "customservice": MessageLookupByLibrary.simpleMessage("客服中心"),
         "emptyCart": MessageLookupByLibrary.simpleMessage("購物車是空的"),
         "enteremail": MessageLookupByLibrary.simpleMessage("請輸入信箱"),
@@ -38,9 +39,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "mail": MessageLookupByLibrary.simpleMessage("信箱"),
         "membercenter": MessageLookupByLibrary.simpleMessage("會員中心"),
+        "men": MessageLookupByLibrary.simpleMessage("男士"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("我的最愛"),
         "newProduct": MessageLookupByLibrary.simpleMessage("新品推薦"),
         "nickName": MessageLookupByLibrary.simpleMessage("暱稱"),
+        "pet": MessageLookupByLibrary.simpleMessage("寵物"),
         "phone": MessageLookupByLibrary.simpleMessage("電話"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage("請再次輸入密碼"),
         "regist": MessageLookupByLibrary.simpleMessage("註冊"),
@@ -48,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("設定"),
         "submit": MessageLookupByLibrary.simpleMessage("送出"),
         "test": MessageLookupByLibrary.simpleMessage("測試頁面"),
-        "total": MessageLookupByLibrary.simpleMessage("總共")
+        "total": MessageLookupByLibrary.simpleMessage("總共"),
+        "women": MessageLookupByLibrary.simpleMessage("女士")
       };
 }

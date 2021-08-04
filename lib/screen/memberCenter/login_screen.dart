@@ -56,7 +56,7 @@ class _Login extends State<Login> {
                           controller: accountController,
                           focusNode: accountFocus,
                           decoration: buildInputDecoration(
-                              Icons.person, '請輸入帳號', login.accountErrorMsg,false),
+                              Icons.person, '請輸入帳號', login.accountErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<LoginNotifier>(
                               context,
@@ -84,7 +84,7 @@ class _Login extends State<Login> {
                           focusNode: passwordFocus,
                           obscureText: login.hidePassword,
                           decoration: buildInputDecoration(
-                              Icons.lock, '請輸入密碼', login.passwordErrorMsg,login.hidePassword),
+                              Icons.lock, '請輸入密碼', login.passwordErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<LoginNotifier>(
                               context,

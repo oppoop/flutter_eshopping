@@ -13,9 +13,9 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: .95,
+      aspectRatio: 0.95,
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: Colors.grey[200],

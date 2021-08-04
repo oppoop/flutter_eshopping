@@ -60,7 +60,7 @@ class _regist extends State<regist> {
                           controller: accountController,
                           focusNode: accountFocus,
                           decoration: buildInputDecoration(
-                              Icons.person, '請輸入信箱', regist.accountErrorMsg,false),
+                              Icons.person, '請輸入信箱', regist.accountErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
                               context,
@@ -87,7 +87,7 @@ class _regist extends State<regist> {
                           controller: passwordController,
                           focusNode: passwordFocus,
                           decoration: buildInputDecoration(
-                              Icons.lock, '請輸入密碼', regist.passwordErrorMsg,regist.hidePassword),
+                              Icons.lock, '請輸入密碼', regist.passwordErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
                               context,
@@ -114,7 +114,7 @@ class _regist extends State<regist> {
                           controller: confirmController,
                           focusNode: confirmFocus,
                           decoration: buildInputDecoration(
-                              Icons.lock_outline_rounded, '請再次輸入密碼', regist.confirmErrorMsg,regist.hidePassword),
+                              Icons.lock_outline_rounded, '請再次輸入密碼', regist.confirmErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
                               context,
@@ -142,7 +142,7 @@ class _regist extends State<regist> {
                           controller: phoneController,
                           focusNode: phoneFocus,
                           decoration: buildInputDecoration(
-                              Icons.phone, '請輸入電話', regist.phoneErrorMsg,false),
+                              Icons.phone, '請輸入電話', regist.phoneErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
                               context,

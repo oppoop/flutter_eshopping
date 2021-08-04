@@ -12,6 +12,7 @@ import 'call_action.dart';
 import 'product_support.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductScreen extends StatefulWidget {
   ProductScreen({required this.product});
@@ -29,6 +30,7 @@ class _ProductScreenState extends State<ProductScreen> {
   String? _sizeValue;
   String? get sizeValue => _sizeValue;
   TextEditingController _numController = TextEditingController();
+  final _productScreenScaffold = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -67,6 +69,30 @@ class _ProductScreenState extends State<ProductScreen> {
         .toList();
   }
 
+  _productSizeSheet(BuildContext context){
+    _productScreenScaffold.currentState!.showBottomSheet((context)
+    {
+      return Container(
+        color: Colors.grey[400],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: product.sizes!.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(product.sizes![index]),
+                    onTap: ()=> Navigator.of(context).pop(),
+                  );
+                }),
+          ],
+        ),
+      );
+    }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> imagePreviews = product.imageUrls!
@@ -97,6 +123,7 @@ class _ProductScreenState extends State<ProductScreen> {
         .toList();
 
     return Scaffold(
+      key: _productScreenScaffold,
       appBar: AppBar(
         actions: [
           CartAppBarAction(),
@@ -110,26 +137,27 @@ class _ProductScreenState extends State<ProductScreen> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * .30,
-                color: Colors.grey[200],
+
                 padding: EdgeInsets.symmetric(vertical: 18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        selectedImageUrl!,
-                        fit: BoxFit.cover,
-                        color: Colors.grey[200],
-                        colorBlendMode: BlendMode.multiply,
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Image.network(
+                          selectedImageUrl!,
+                          fit: BoxFit.cover,
+                          color: Colors.grey[200],
+                          colorBlendMode: BlendMode.multiply,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 18),
-                    Row(
+                      /*Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: imagePreviews,
-                    ),
-                  ],
-                ),
+                    ),*/
+                    ],
+                  ),
+                )
               ),
               IconButton(
                   onPressed: () async{
@@ -198,12 +226,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                Text(S().chooseSize,style: GoogleFonts.notoSerif(),),
                                 Icon(Icons.arrow_drop_down,size:30,),
                               ]
                           ),
-                            onTap: (){
-                              Scaffold.of(context).showBottomSheet((BuildContext context)=> Container(),);
-                            },)
+                            onTap: ()=> _productSizeSheet(context),)
                       ),
                     ),
                     SizedBox(
@@ -279,7 +306,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 4,
+                        itemCount: product.details!.length,
                         itemExtent: 40,
                         itemBuilder: (context, index) {
                           return ListTile(
@@ -319,7 +346,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       controller: _numController,
                       onChanged:(String productNum){if(productNum != ""){num.setNumber(productNumber: _numController.text);}},
                       keyboardType: TextInputType.number,
-                      decoration: buildInputDecoration(null,'數量',"",false,),
+                      decoration: buildInputDecoration(null,'數量',null,null,),
                     ),
                   ),
                   IconButton(onPressed: ()=>num.plusNumber(productNumber: _numController.text), icon: Icon(Icons.add)),
