@@ -7,7 +7,7 @@ class FavoriteNotify with ChangeNotifier{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     favoriteList.add(productID);
     print(favoriteList);
-    var favoriteSet = prefs.setStringList('favorite', favoriteList);
+    bool favoriteSet = await prefs.setStringList('favorite', favoriteList);
     print(favoriteSet);
     notifyListeners();
   }
@@ -16,12 +16,12 @@ class FavoriteNotify with ChangeNotifier{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     favoriteList.remove(productID);
     print(favoriteList);
-    var favoriteSet = prefs.setStringList('favorite', favoriteList);
+    bool favoriteSet = await prefs.setStringList('favorite', favoriteList);
     print(favoriteSet);
     notifyListeners();
   }
 
-  Future<void> getFavorite()async{
+  Future<void> getFavorite(String productID)async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     favoriteList = prefs.getStringList('favorite')!;
     print(favoriteList);

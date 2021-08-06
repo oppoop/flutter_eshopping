@@ -6,13 +6,16 @@ import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'package:flutter_eshopping/data_model/order_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eshopping/temp_data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
 import 'call_action.dart';
 import 'product_support.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
+import 'package:flutter_eshopping/providers/product_size_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'product_details.dart';
 
 class ProductScreen extends StatefulWidget {
   ProductScreen({required this.product});
@@ -24,16 +27,18 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   Product get product => widget.product;
   bool _pageChange = false;
-  bool _favoriteStatus = false;
+  bool? _favoriteStatus=false;
+  bool? _categoryType;
   String? selectedImageUrl;
   String? selectedSize;
-  String? _sizeValue;
+  String _sizeValue="";
   String? get sizeValue => _sizeValue;
   TextEditingController _numController = TextEditingController();
   final _productScreenScaffold = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
+    checkCategory();
     selectedImageUrl = product.imageUrls!.first;
     selectedSize = product.sizes?.first;
     super.initState();
@@ -58,6 +63,13 @@ class _ProductScreenState extends State<ProductScreen> {
     });
   }
 
+  void checkCategory(){
+    if(product.category == petCategory)
+      {_categoryType = false;}
+    else
+      {_categoryType = true;}
+  }
+
   List<Product> filterProducts({
     required List<Product> products,
     required Category category,
@@ -72,23 +84,38 @@ class _ProductScreenState extends State<ProductScreen> {
   _productSizeSheet(BuildContext context){
     _productScreenScaffold.currentState!.showBottomSheet((context)
     {
-      return Container(
-        color: Colors.grey[400],
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: product.sizes!.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(product.sizes![index]),
-                    onTap: ()=> Navigator.of(context).pop(),
-                  );
-                }),
-          ],
-        ),
-      );
+      return StatefulBuilder(builder: (BuildContext context,StateSetter setState){
+        return Container(
+          color: Colors.grey[700],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: product.sizes!.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                        title: Text(product.sizes![index],style:GoogleFonts.notoSerif().copyWith(color: Colors.black),),
+                        leading: Radio<String>(
+                          groupValue: _sizeValue,
+                          value: product.sizes![index],
+                          onChanged: (value){
+                            setState(() {
+                              Provider.of<ProductSizeNotifier>(context,listen: false).sizeSelect(sizeValue: _sizeValue);
+                              _sizeValue = product.sizes![index];
+                              print(_sizeValue);
+                            });
+                          },
+                        ),
+                    );
+                  }),
+              Divider(height: 10,color: Colors.grey[300],thickness: 5,),
+              SizedBox(height: 10,),
+              ElevatedButton(onPressed:()=>Navigator.pop(context), child: Text('確認'),)
+            ],
+          ),
+        );
+      });
     }
     );
   }
@@ -137,7 +164,7 @@ class _ProductScreenState extends State<ProductScreen> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * .30,
-
+                color: Colors.grey[200],
                 padding: EdgeInsets.symmetric(vertical: 18),
                 child: Center(
                   child: Column(
@@ -162,20 +189,20 @@ class _ProductScreenState extends State<ProductScreen> {
               IconButton(
                   onPressed: () async{
                     setState(() {
-                      _favoriteStatus = !_favoriteStatus;
-                      if(_favoriteStatus){
+                      _favoriteStatus = !_favoriteStatus!;
+                      if(_favoriteStatus!){
                         Provider.of<FavoriteNotify>(context,listen: false).favoriteAdd(product.productID!);}
                       else{
                         Provider.of<FavoriteNotify>(context,listen: false).favoriteRemove(product.productID!);
                       }
                     });
                   },
-                  icon: _favoriteStatus
+                  icon: _favoriteStatus!
                       ? Icon(
                     Icons.favorite,
                     color: Colors.pink,
                   )
-                      : Icon(Icons.favorite_border))
+                      : Icon(Icons.favorite_border,color: Colors.pink,))
             ],
           ),
           Expanded(
@@ -222,21 +249,32 @@ class _ProductScreenState extends State<ProductScreen> {
                           height: 35,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey, width: 0.5)),
-                          child: InkWell(child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(S().chooseSize,style: GoogleFonts.notoSerif(),),
-                                Icon(Icons.arrow_drop_down,size:30,),
-                              ]
+                          child:Consumer<ProductSizeNotifier>(
+                            builder: (
+                                context,
+                                size,
+                                _,
+                                ) {
+                              return InkWell(child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    size.sizeStatus
+                                    ?Text(_sizeValue)
+                                    :Text(S().chooseSize,style: GoogleFonts.notoSerif(),),
+                                    Icon(Icons.arrow_drop_down,size:30,),
+                                  ]
+                              ),
+                                onTap:()=>_productSizeSheet(context),
+                              );
+                            },
                           ),
-                            onTap: ()=> _productSizeSheet(context),)
                       ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    _categoryType!?Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
@@ -252,7 +290,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: InkWell(
                             child: Center(
                               child: Text(
-                                '詳情',
+                                S().productDetails,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline2!
@@ -283,7 +321,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: InkWell(
                             child: Center(
                               child: Text(
-                                '尺寸',
+                                S().modelSize,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline2!
@@ -302,18 +340,20 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         ),
                       ],
+                    ):Center(
+                      child: Text(
+                        S().productDetails,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline2!
+                            .copyWith(
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
                     ),
-                    ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: product.details!.length,
-                        itemExtent: 40,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: Text(' - '),
-                            title: Text(product.details![index]),
-                          );
-                        }),
+                    _pageChange
+                        ?productModelSize(modelSizeLength: product.modelSize!.length, modelSizeLeading: modelSize, modelSizeList: product.modelSize)
+                        :productDetails(detailLength: product.details!.length, detailList: product.details),
                     SizedBox(height: 10,),
                     Container(color: Colors.grey,height: 15,),
                     ListView(
@@ -343,10 +383,11 @@ class _ProductScreenState extends State<ProductScreen> {
                     height: 50,
                     width: 70,
                     child: TextFormField(
+                      textAlign: TextAlign.center,
                       controller: _numController,
                       onChanged:(String productNum){if(productNum != ""){num.setNumber(productNumber: _numController.text);}},
                       keyboardType: TextInputType.number,
-                      decoration: buildInputDecoration(null,'數量',null,null,),
+                      decoration:sizeInputDecoration(),
                     ),
                   ),
                   IconButton(onPressed: ()=>num.plusNumber(productNumber: _numController.text), icon: Icon(Icons.add)),

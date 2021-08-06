@@ -28,5 +28,7 @@
   "men": "Men",
   "women": "Women",
   "pet": "Pet",
-  "chooseSize": "Choose your size"
+  "chooseSize": "Choose your size",
+  "productDetails": "Product Details",
+  "modelSize": "Model Sizes"
 }

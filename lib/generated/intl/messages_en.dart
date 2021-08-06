@@ -44,11 +44,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
         "men": MessageLookupByLibrary.simpleMessage("Men"),
+        "modelSize": MessageLookupByLibrary.simpleMessage("Model Sizes"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
         "pet": MessageLookupByLibrary.simpleMessage("Pet"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
+        "productDetails":
+            MessageLookupByLibrary.simpleMessage("Product Details"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage(
             "Please re-enter the password"),
         "regist": MessageLookupByLibrary.simpleMessage("Regist"),

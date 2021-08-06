@@ -28,5 +28,7 @@
   "men": "男士",
   "women": "女士",
   "pet": "寵物",
-  "chooseSize": "選擇你的尺寸"
+  "chooseSize": "選擇你的尺寸",
+  "productDetails": "產品詳情",
+  "modelSize": "模特尺寸"
 }

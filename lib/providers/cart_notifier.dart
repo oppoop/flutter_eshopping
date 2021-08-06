@@ -24,4 +24,11 @@ class CartNotifier with ChangeNotifier {
     print(t);
     notifyListeners();
   }
+
+  void changeSize({required }){
+
+  }
+  void changeNum(){
+
+  }
 }

@@ -38,13 +38,17 @@ class _regist extends State<regist> {
               key: _formkey,
               child: Column(
                 children: [
-                  ClipOval(
-                    child: Image.network(
-                      'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
-                      fit: BoxFit.cover,
-                      width: 150,
-                      height: 150,
-                    ),
+                  Row(
+                    children: [
+                      ClipOval(
+                        child: Image.network(
+                          'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
+                          fit: BoxFit.cover,
+                          width: 150,
+                          height: 150,
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                     padding:
@@ -59,7 +63,7 @@ class _regist extends State<regist> {
                           keyboardType: TextInputType.text,
                           controller: accountController,
                           focusNode: accountFocus,
-                          decoration: buildInputDecoration(
+                          decoration: memberInputDecoration(
                               Icons.person, '請輸入信箱', regist.accountErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
@@ -86,7 +90,7 @@ class _regist extends State<regist> {
                           keyboardType: TextInputType.text,
                           controller: passwordController,
                           focusNode: passwordFocus,
-                          decoration: buildInputDecoration(
+                          decoration: memberInputDecoration(
                               Icons.lock, '請輸入密碼', regist.passwordErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
@@ -113,7 +117,7 @@ class _regist extends State<regist> {
                           keyboardType: TextInputType.text,
                           controller: confirmController,
                           focusNode: confirmFocus,
-                          decoration: buildInputDecoration(
+                          decoration: memberInputDecoration(
                               Icons.lock_outline_rounded, '請再次輸入密碼', regist.confirmErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(
@@ -141,7 +145,7 @@ class _regist extends State<regist> {
                           keyboardType: TextInputType.number,
                           controller: phoneController,
                           focusNode: phoneFocus,
-                          decoration: buildInputDecoration(
+                          decoration: memberInputDecoration(
                               Icons.phone, '請輸入電話', regist.phoneErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<RegistNotifier>(

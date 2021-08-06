@@ -9,7 +9,6 @@ class Product {
   final List<String>? sizes;
   final List<String>? details;
   final List<String>? modelSize;
-
   /// Which overall category this product belongs in. e.g - Men, Women, Pets, etc.
   final Category? category;
 

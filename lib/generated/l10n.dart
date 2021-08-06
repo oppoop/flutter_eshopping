@@ -349,6 +349,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Product Details`
+  String get productDetails {
+    return Intl.message(
+      'Product Details',
+      name: 'productDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model Sizes`
+  String get modelSize {
+    return Intl.message(
+      'Model Sizes',
+      name: 'modelSize',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

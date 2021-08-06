@@ -11,6 +11,82 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  bool _pageChange = false;
+  _showDialog(BuildContext context)async{
+    return await showDialog(
+      context: context,
+      builder:(context){
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.4,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 2,
+                          color: _pageChange
+                              ? Colors.grey
+                              : Colors.black))),
+              child: InkWell(
+                child: Center(
+                  child: Text(
+                    '詳情',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(
+                        fontSize: 15,
+                        color: _pageChange
+                            ? Colors.grey
+                            : Colors.black),
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    _pageChange = !_pageChange;
+                  });
+                },
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.4,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 2,
+                          color: _pageChange
+                              ? Colors.black
+                              : Colors.grey))),
+              child: InkWell(
+                child: Center(
+                  child: Text(
+                    '尺寸',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(
+                        fontSize: 15,
+                        color: _pageChange
+                            ? Colors.black
+                            : Colors.grey),
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    _pageChange = !_pageChange;
+                  });
+                },
+              ),
+            ),
+          ],
+        );
+    }
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -66,7 +142,7 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
               Text(
-                "\$" + item.totalCost.toString(),
+                "\$" + item.totalCost!.toStringAsFixed(2),
                 style: Theme.of(context).textTheme.subtitle2!.copyWith(
                   color: Theme.of(context).accentColor,
                 ),
@@ -74,11 +150,20 @@ class _CartScreenState extends State<CartScreen> {
             ],
           ),
         ),
-        IconButton(
-          icon: Icon(Icons.close),
-          onPressed: () => context.read<CartNotifier>().remove(item),
-          color: Colors.red,
-        )
+        Column(
+          children: [
+            IconButton(
+              icon: Icon(Icons.mode_edit),
+              onPressed: () => _showDialog(context),
+              color: Colors.green[800],
+            ),
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () => context.read<CartNotifier>().remove(item),
+              color: Colors.red,
+            )
+          ],
+        ),
       ],
     ),
     ).toList();
