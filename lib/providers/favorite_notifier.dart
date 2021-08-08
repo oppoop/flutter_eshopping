@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-class FavoriteNotify with ChangeNotifier{
-  List<String> favoriteList = [];
 
+List<String> favoriteList = [];
+
+class FavoriteNotify with ChangeNotifier{
   Future<void> favoriteAdd(String productID) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    favoriteList = prefs.getStringList('favorite')!;
     favoriteList.add(productID);
     print(favoriteList);
     bool favoriteSet = await prefs.setStringList('favorite', favoriteList);
@@ -21,7 +23,7 @@ class FavoriteNotify with ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> getFavorite(String productID)async{
+  Future<void> getFavorite()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     favoriteList = prefs.getStringList('favorite')!;
     print(favoriteList);

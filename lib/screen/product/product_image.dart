@@ -28,7 +28,7 @@ class ProductImage extends StatelessWidget {
               : Center(child: CircularProgressIndicator()),
           color: Colors.grey[200],
           colorBlendMode: BlendMode.multiply,
-          fit: BoxFit.fitHeight,
+
         ),
       ),
     );

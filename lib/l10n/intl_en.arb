@@ -30,5 +30,7 @@
   "pet": "Pet",
   "chooseSize": "Choose your size",
   "productDetails": "Product Details",
-  "modelSize": "Model Sizes"
+  "modelSize": "Model Sizes",
+  "numEdit":"Edit Number",
+  "sizeEdit": "Edit Size"
 }

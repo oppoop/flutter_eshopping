@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
+        "numEdit": MessageLookupByLibrary.simpleMessage("Edit Number"),
         "pet": MessageLookupByLibrary.simpleMessage("Pet"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "productDetails":
@@ -57,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "regist": MessageLookupByLibrary.simpleMessage("Regist"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "sizeEdit": MessageLookupByLibrary.simpleMessage("Edit Size"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "test": MessageLookupByLibrary.simpleMessage("TEST"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),

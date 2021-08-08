@@ -1,3 +1,4 @@
+import 'package:flutter_eshopping/data_model/order_item.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/providers/cart_notifier.dart';
 import 'package:flutter_eshopping/screen/product/call_action.dart';
@@ -5,87 +6,113 @@ import 'package:flutter_eshopping/screen/product/product_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/model/textfied_look.dart';
+import 'package:flutter_eshopping/providers/product_number_notifier.dart';
 
 class CartScreen extends StatefulWidget {
   @override _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-  bool _pageChange = false;
-  _showDialog(BuildContext context)async{
+  TextEditingController _numController = TextEditingController();
+  int _sizeCurrent = 0;
+
+  _showDialog(BuildContext context,OrderItem item)async{
+    _numController.text = item.selectedNum.toString();
     return await showDialog(
-      context: context,
-      builder:(context){
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              decoration: BoxDecoration(
-                  color: Colors.white10,
-                  border: Border(
-                      bottom: BorderSide(
-                          width: 2,
-                          color: _pageChange
-                              ? Colors.grey
-                              : Colors.black))),
-              child: InkWell(
-                child: Center(
-                  child: Text(
-                    '詳情',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(
-                        fontSize: 15,
-                        color: _pageChange
-                            ? Colors.grey
-                            : Colors.black),
-                  ),
-                ),
-                onTap: () {
-                  setState(() {
-                    _pageChange = !_pageChange;
-                  });
-                },
+        context: context,
+        builder:(context){
+          return StatefulBuilder(builder: (BuildContext context,StateSetter setState){
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(3),
               ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              decoration: BoxDecoration(
-                  color: Colors.white10,
-                  border: Border(
-                      bottom: BorderSide(
-                          width: 2,
-                          color: _pageChange
-                              ? Colors.black
-                              : Colors.grey))),
-              child: InkWell(
-                child: Center(
-                  child: Text(
-                    '尺寸',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(
-                        fontSize: 15,
-                        color: _pageChange
-                            ? Colors.black
-                            : Colors.grey),
-                  ),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.6,
+                padding:EdgeInsets.symmetric(vertical:20,horizontal: 20 ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey[850]),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: ProductImage(
+                        product: item.product,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Text(item.product.name!,style: GoogleFonts.notoSerif().copyWith(),),
+                    Divider(color: Colors.grey[350],thickness: 3,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(S().numEdit,style: GoogleFonts.notoSerif().copyWith(),),
+                        SizedBox(
+                          height: 50,
+                          width: 70,
+                          child: TextFormField(
+                            textAlign: TextAlign.center,
+                            controller: _numController,
+                            onChanged:(String productNum){productNum = _numController.text;},
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children:item.product.sizes!.map((e) {
+                        int index = item.product.sizes!.indexOf(e);
+                        return InkWell(
+                          onTap: (){
+                            setState(() {
+                              _sizeCurrent = index;
+                            });
+                          },
+                          child: Container(
+                              width: 50,
+                              height: 50,
+                              margin: EdgeInsets.symmetric(vertical: 10,horizontal: 2),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      width:1.5 ,
+                                      color: _sizeCurrent == index
+                                          ?Colors.indigoAccent.shade700:Colors.white
+                                  )
+                              ),
+                              child: Center(
+                                child: Text(item.product.sizes![index],
+                                  style: GoogleFonts.notoSerif().copyWith(
+                                      color: _sizeCurrent == index?Colors.indigoAccent.shade700:Colors.white
+                                  ),),)
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 20,),
+                    ElevatedButton(
+                      onPressed:(){
+                        Navigator.pop(context);
+                        item.selectedNum = int.tryParse(_numController.text );
+                        item.selectedSize = item.product.sizes![_sizeCurrent];
+                      } ,
+                      child: Text(S().submit),
+                    ),
+                  ],
                 ),
-                onTap: () {
-                  setState(() {
-                    _pageChange = !_pageChange;
-                  });
-                },
               ),
-            ),
-          ],
-        );
-    }
-    );
-  }
+            );
+          });
+        }
+    );}
+
 
   @override
   void initState() {
@@ -154,7 +181,7 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             IconButton(
               icon: Icon(Icons.mode_edit),
-              onPressed: () => _showDialog(context),
+              onPressed: () => _showDialog(context,item),
               color: Colors.green[800],
             ),
             IconButton(
@@ -167,6 +194,7 @@ class _CartScreenState extends State<CartScreen> {
       ],
     ),
     ).toList();
+
 
     return Scaffold(
       appBar: AppBar(

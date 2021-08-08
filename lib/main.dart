@@ -11,12 +11,19 @@ import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
+import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 void main() {
   runApp(
     MultiProvider(
         providers: [
           ChangeNotifierProvider<CartNotifier>(
             create: (context) => CartNotifier(),
+          ),
+          ChangeNotifierProvider<FavoriteNotify>(
+            create: (context) => FavoriteNotify(),
+          ),
+          ChangeNotifierProvider<LanguageProvider>(
+            create: (context) => LanguageProvider(),
           ),
         ],
         child: App(),
@@ -28,38 +35,30 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<LanguageProvider>(
-            create: (context) => LanguageProvider(),
+    return Consumer<LanguageProvider>(
+      builder: (
+          context,
+          languageProvider,
+          _,
+          ) {
+        return MaterialApp(
+          locale: Locale(
+            context.watch<LanguageProvider>().languageCode,
+            context.watch<LanguageProvider>().countryCode,
           ),
-        ],
-        child: Consumer<LanguageProvider>(
-          builder: (
-              context,
-              languageProvider,
-              _,
-              ) {
-            return MaterialApp(
-              locale: Locale(
-                context.watch<LanguageProvider>().languageCode,
-                context.watch<LanguageProvider>().countryCode,
-              ),
-              localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              theme: new ThemeData(brightness: Brightness.dark),
-              home: AppPage(),
-            );
-          },
-        )
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          debugShowCheckedModeBanner: false,
+          theme: new ThemeData(brightness: Brightness.dark),
+          home: AppPage(),
+        );
+      },
     );
-
   }
 }
 

@@ -369,6 +369,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit Number`
+  String get numEdit {
+    return Intl.message(
+      'Edit Number',
+      name: 'numEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Size`
+  String get sizeEdit {
+    return Intl.message(
+      'Edit Size',
+      name: 'sizeEdit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

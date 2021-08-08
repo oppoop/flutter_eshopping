@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 ListTile _listTile(IconData icon, String tittle,) {
   return ListTile(
-    leading: Icon(icon, color: Colors.grey[200],),
-    title: Text(tittle, style: TextStyle(fontSize: 10, color: Colors.grey[200]),),
+    leading: Icon(icon, color: Colors.black),
+    title: Text(tittle, style: GoogleFonts.notoSerif().copyWith(color: Colors.black),),
   );
 }
 List<Widget> productSupport = <Widget>[

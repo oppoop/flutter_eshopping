@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'cart_screen.dart';
+import 'package:flutter_eshopping/providers/product_number_notifier.dart';
 
 class CartAppBarAction extends StatefulWidget {
   @override
@@ -55,7 +56,10 @@ class _CartAppBarActionState extends State<CartAppBarAction> {
       onPressed: () =>Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => CartScreen(),
+          builder: (_) => ChangeNotifierProvider<ProductNumberNotifier>(
+            create: (context) => ProductNumberNotifier(),
+            child: CartScreen(),
+          ),
         ),
       ),
     );

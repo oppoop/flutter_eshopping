@@ -35,31 +35,33 @@ class ProductTile extends StatelessWidget {
             child:ProductScreen(product: product),),
         ),);
       },
-      child: SizedBox(
-        width: 150,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ProductImage(product: product),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              product.name!,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.subtitle2,
-            ),
-            Spacer(),
-            Text(
-              "\$${product.cost.toString()}",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: Theme.of(context).accentColor),
-            )
-          ],
-        ),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              ProductImage(product: product),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                product.name!,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "\$${product.cost.toString()}",
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle2!
+                    .copyWith(color: Theme.of(context).accentColor),
+              )
+            ],
+          )
+        ],
       ),
     );
   }

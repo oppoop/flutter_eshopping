@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ProductNumberNotifier with ChangeNotifier{
-  int? _productNumber;
+  int _productNumber=1;
   get productNumber => _productNumber;
 
   void setNumber({required String productNumber}){
@@ -18,7 +18,9 @@ class ProductNumberNotifier with ChangeNotifier{
   }
 
   void minusNumber({required String productNumber}){
-    _productNumber = int.parse(productNumber)-1;
+    if(_productNumber > 1){
+      _productNumber = int.parse(productNumber)-1;
+    }
     print(_productNumber);
     notifyListeners();
   }

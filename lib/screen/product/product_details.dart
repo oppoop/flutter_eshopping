@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 Widget productDetails({required int detailLength,required List<String>? detailList,}){
   return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
@@ -8,8 +8,8 @@ Widget productDetails({required int detailLength,required List<String>? detailLi
       itemExtent: 40,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Text(' - '),
-          title: Text(detailList![index]),
+          leading: Text(' - ',style: GoogleFonts.notoSerif().copyWith(color: Colors.black),),
+          title: Text(detailList![index],style: GoogleFonts.notoSerif().copyWith(color: Colors.black),),
         );
       });
 }
@@ -22,8 +22,8 @@ Widget productModelSize({required int modelSizeLength,required List<String>? mod
       itemExtent: 40,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Text(modelSizeLeading![index]+':'),
-          title: Text(modelSizeList![index]),
+          leading: Text(modelSizeLeading![index]+':',style: GoogleFonts.notoSerif().copyWith(color: Colors.black),),
+          title: Text(modelSizeList![index],style: GoogleFonts.notoSerif().copyWith(color: Colors.black),),
         );
       });
 }

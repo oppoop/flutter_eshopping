@@ -30,5 +30,7 @@
   "pet": "寵物",
   "chooseSize": "選擇你的尺寸",
   "productDetails": "產品詳情",
-  "modelSize": "模特尺寸"
+  "modelSize": "模特尺寸",
+  "numEdit":"修改數量",
+  "sizeEdit": "修改尺寸"
 }

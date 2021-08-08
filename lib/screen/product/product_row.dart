@@ -35,8 +35,9 @@ class ProductRow extends StatelessWidget {
               primary: false,
               padding: const EdgeInsets.symmetric(horizontal: 18),
               crossAxisSpacing: 10,
-              mainAxisSpacing:60,
+              mainAxisSpacing:20,
               crossAxisCount: 2,
+              childAspectRatio: 0.7,
               children:_productTiles
           ),
         )
