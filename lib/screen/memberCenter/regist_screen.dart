@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_eshopping/providers/regist_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/utils/getImage.dart';
 
 class regist extends StatefulWidget {
   @override
@@ -55,9 +58,14 @@ class _regist extends State<regist> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: () =>
-                              Provider.of<RegistNotifier>(context,listen: false).headImgChange(headImgUrl:'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg')
-                            ,
+                            onPressed: () => Provider.of<RegistNotifier>(
+                                    context,
+                                    listen: false)
+                                .headImgChange(
+                              headImgUrl:
+                                  'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
+                              imgLocal: false,
+                            ),
                             child: Text('man'),
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.blueAccent[700],
@@ -68,47 +76,65 @@ class _regist extends State<regist> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)))),
                           ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipOval(
-                              child: Stack(
-                                alignment: AlignmentDirectional.bottomStart,
-                                children: [
-                                  Container(
-                                    child: Consumer<RegistNotifier>(
-                                        builder: (
-                                            context,
-                                            regist,
-                                            _,
-                                            ) {
-                                          return Image.network(
-                                            regist.headImgUrl,
-                                            fit: BoxFit.cover,
-                                            width: 130,
-                                            height: 130,
-                                          );
-                                        },
-                                    ),
+                          Consumer<RegistNotifier>(
+                            builder: (
+                              context,
+                              regist,
+                              _,
+                            ) {
+                              return GestureDetector(
+                                onTap: () =>
+                                    GetImage().getActionSheet(context: context),
+                                child: ClipOval(
+                                  child: Stack(
+                                    alignment: AlignmentDirectional.bottomStart,
+                                    children: [
+                                      regist.imgLocal
+                                          ? Container(
+                                              child: Image.file(
+                                                File(
+                                                  regist.headImgUrl,
+                                                ),
+                                                fit: BoxFit.cover,
+                                                width: 130,
+                                                height: 130,
+                                              ),
+                                            )
+                                          : Container(
+                                              child: Image.network(
+                                                regist.headImgUrl,
+                                                fit: BoxFit.cover,
+                                                width: 130,
+                                                height: 130,
+                                              ),
+                                            ),
+                                      Container(
+                                        width: 130,
+                                        height: 20,
+                                        child: Text(
+                                          "點擊上傳",
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.notoSerif()
+                                              .copyWith(fontSize: 12),
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Color(0x80000000)),
+                                      ),
+                                    ],
                                   ),
-                                  Container(
-                                    width: 130,
-                                    height: 20,
-                                    child: Text(
-                                      "點擊上傳",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.notoSerif()
-                                          .copyWith(fontSize: 12),
-                                    ),
-                                    decoration:
-                                        BoxDecoration(color: Color(0x80000000)),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            },
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              Provider.of<RegistNotifier>(context,listen: false).headImgChange(headImgUrl: 'https://cdn.hk01.com/di/media/images/cis/5e32d866aa60062bd0ef6862.jpg/W6uIiIekjbEezHdqtlWO-sZ9HMom1JfBuizIzrosyM4?v=w800');
+                              Provider.of<RegistNotifier>(context,
+                                      listen: false)
+                                  .headImgChange(
+                                headImgUrl:
+                                    'https://cdn.hk01.com/di/media/images/cis/5e32d866aa60062bd0ef6862.jpg/W6uIiIekjbEezHdqtlWO-sZ9HMom1JfBuizIzrosyM4?v=w800',
+                                imgLocal: false,
+                              );
                             },
                             child: Text('woman'),
                             style: ElevatedButton.styleFrom(

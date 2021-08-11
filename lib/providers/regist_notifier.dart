@@ -32,6 +32,9 @@ class RegistNotifier with ChangeNotifier {
   bool _finalValid = false;
   bool get finalValid => _finalValid;
 
+  bool _imgLocal=false;
+  bool get imgLocal => _imgLocal;
+
   bool hidePassword = true;
 
   void accountValidating({
@@ -100,9 +103,11 @@ class RegistNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  void headImgChange({required String headImgUrl}){
+  void headImgChange({required String headImgUrl,required bool imgLocal}){
     _headImgUrl = headImgUrl;
+    _imgLocal = imgLocal;
     print(_headImgUrl);
+    print(_imgLocal);
     notifyListeners();
   }
 }
