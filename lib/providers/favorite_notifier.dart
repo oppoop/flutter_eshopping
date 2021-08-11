@@ -14,6 +14,7 @@ class FavoriteNotify with ChangeNotifier{
     notifyListeners();
   }
 
+
   Future<void> favoriteRemove(String productID)async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     favoriteList.remove(productID);

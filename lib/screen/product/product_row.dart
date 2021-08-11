@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductRow extends StatelessWidget {
-  const ProductRow({this.products, this.productType});
+  const ProductRow({this.products, this.productType,this.productID});
   final String? productType;
   final List<Product>? products;
+  final String? productID;
 
   @override
   Widget build(BuildContext context) {

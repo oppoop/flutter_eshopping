@@ -1,6 +1,7 @@
 import 'package:flutter_eshopping/providers/change_language_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'screen/home_screen.dart';
 import 'screen/search_screen.dart';
 import 'screen/recommend_screen.dart';
@@ -12,35 +13,40 @@ import 'generated/l10n.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
-void main() {
+
+Future<void> main() async {
+
+
   runApp(
     MultiProvider(
-        providers: [
-          ChangeNotifierProvider<CartNotifier>(
-            create: (context) => CartNotifier(),
-          ),
-          ChangeNotifierProvider<FavoriteNotify>(
-            create: (context) => FavoriteNotify(),
-          ),
-          ChangeNotifierProvider<LanguageProvider>(
-            create: (context) => LanguageProvider(),
-          ),
-        ],
-        child: App(),
-      ),
+      providers: [
+        ChangeNotifierProvider<LoginStatusNotifier>(
+          create: (context) => LoginStatusNotifier(),
+        ),
+        ChangeNotifierProvider<CartNotifier>(
+          create: (context) => CartNotifier(),
+        ),
+        ChangeNotifierProvider<FavoriteNotify>(
+          create: (context) => FavoriteNotify(),
+        ),
+        ChangeNotifierProvider<LanguageProvider>(
+          create: (context) => LanguageProvider(),
+        ),
+      ],
+      child: App(),
+    ),
   );
 }
+
 class App extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Consumer<LanguageProvider>(
       builder: (
-          context,
-          languageProvider,
-          _,
-          ) {
+        context,
+        languageProvider,
+        _,
+      ) {
         return MaterialApp(
           locale: Locale(
             context.watch<LanguageProvider>().languageCode,
@@ -69,7 +75,7 @@ class AppPage extends StatefulWidget {
 
 class _AppState extends State<AppPage> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Home(), Search(),Recommend(),Favorite()];
+  final List<Widget> _children = [Home(), Search(), Recommend(), Favorite()];
   final List<Widget> _appBar = [
     HomeBar(),
     SearchBar(),
@@ -79,6 +85,7 @@ class _AppState extends State<AppPage> {
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
+      Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
     });
   }
 
@@ -98,10 +105,15 @@ class _AppState extends State<AppPage> {
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: S.of(context).home),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: S.of(context).search),
-          BottomNavigationBarItem(icon: Icon(Icons.local_fire_department), label:S.of(context).newProduct),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: S.of(context).myFavorite),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home), label: S.of(context).home),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search), label: S.of(context).search),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.local_fire_department),
+              label: S.of(context).newProduct),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: S.of(context).myFavorite),
         ],
       ),
       drawer: Drawer(

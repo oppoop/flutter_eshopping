@@ -14,6 +14,9 @@ class RegistNotifier with ChangeNotifier {
   String? _phoneErrorMsg;
   String? get phoneErrorMsg => _phoneErrorMsg;
 
+  String _headImgUrl = 'https://cdn0.popo.tw/uc/default_icons/userpic_L_200x200.jpg';
+  String get headImgUrl => _headImgUrl;
+
   bool _accountValid = false;
   bool get accountValid => _accountValid;
 
@@ -94,6 +97,12 @@ class RegistNotifier with ChangeNotifier {
 
   void changeHidePassword() {
     hidePassword = !hidePassword;
+    notifyListeners();
+  }
+
+  void headImgChange({required String headImgUrl}){
+    _headImgUrl = headImgUrl;
+    print(_headImgUrl);
     notifyListeners();
   }
 }

@@ -21,7 +21,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
   //Filters filterValue = Filters.popular;
   //String selection;
   late List<Product> _products;
-  TabController? _tabController;
 
   @override
   void initState() {

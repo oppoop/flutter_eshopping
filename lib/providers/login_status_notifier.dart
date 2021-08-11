@@ -5,15 +5,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStatusNotifier with ChangeNotifier{
 
-  bool _loginStatus = false;
-  bool get loginStatus => _loginStatus;
+  bool? _loginStatus = false;
+  bool get loginStatus => _loginStatus!;
 
   Future<void> getAccount() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var account = prefs.getString('account');
     print(account);
     if(account != null){_loginStatus = true;}
-    print(loginStatus);
+    else{_loginStatus=false;}
+    print('登入狀態 + $loginStatus');
     notifyListeners();
   }
 

@@ -28,7 +28,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   Product get product => widget.product;
   bool _pageChange = false;
-  bool? _favoriteStatus=false;
+  bool? _favoriteStatus;
   bool? _categoryType;
   int _productCurrent = 0;
   String? selectedImageUrl;
@@ -44,6 +44,8 @@ class _ProductScreenState extends State<ProductScreen> {
     selectedImageUrl = product.imageUrls!.first;
     selectedSize = product.sizes?.first;
     super.initState();
+    _favoriteStatus = favoriteList.contains(product.productID);
+    print(_favoriteStatus);
   }
 
   @override
@@ -70,6 +72,8 @@ class _ProductScreenState extends State<ProductScreen> {
     else
       {_categoryType = true;}
   }
+
+
 
   List<Product> filterProducts({
     required List<Product> products,
