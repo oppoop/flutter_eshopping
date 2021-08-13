@@ -5,7 +5,7 @@ import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
-import 'package:flutter_eshopping/providers/member_center_notifier.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
 class DrawerStatus {
   final double listSize = 20;
   Widget drawerOpen(context) {
@@ -23,8 +23,8 @@ class DrawerStatus {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider<MemberDetails>(
-                    create: (context) => MemberDetails(),
+                  builder: (context) => ChangeNotifierProvider<MemberDetailsNotifier>(
+                    create: (context) => MemberDetailsNotifier(),
                     child: MemberCenter(),
                   ),
                 ),

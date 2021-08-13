@@ -18,16 +18,6 @@ class LoginStatusNotifier with ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> saveAccount({required String account,required String password,}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _loginStatus = await prefs.setString('account', account);
-    prefs.setString('password', password);
-    print(account);
-    print(password);
-    print(_loginStatus);
-    notifyListeners();
-  }
-
   Future<void> removeAccount() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('account');

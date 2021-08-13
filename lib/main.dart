@@ -2,6 +2,7 @@ import 'package:flutter_eshopping/providers/change_language_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/providers/login_status_notifier.dart';
+import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'screen/home_screen.dart';
 import 'screen/search_screen.dart';
 import 'screen/recommend_screen.dart';
@@ -13,9 +14,9 @@ import 'generated/l10n.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
+import 'screen/memberCenter/regist_screen.dart';
 
 Future<void> main() async {
-
 
   runApp(
     MultiProvider(
@@ -48,6 +49,19 @@ class App extends StatelessWidget {
         _,
       ) {
         return MaterialApp(
+          routes: {
+            //Map<String, WidgetBuilder>
+            "/regist": (context) => new regist(),
+            "/login": (context) => new Login(),
+            "/home": (context) => new Home(),
+          },
+          onUnknownRoute: (RouteSettings settings) {
+            return MaterialPageRoute<void>(
+              settings: settings,
+              builder: (BuildContext context) =>
+                  Scaffold(body: Center(child: Text('Not Found'))),
+            );
+          },
           locale: Locale(
             context.watch<LanguageProvider>().languageCode,
             context.watch<LanguageProvider>().countryCode,

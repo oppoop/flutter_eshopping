@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 class RegistNotifier with ChangeNotifier {
 
+  String? _nickNameErrorMsg;
+  String? get nickNameErrorMsg => _nickNameErrorMsg;
+
   String? _accountErrorMsg;
   String? get accountErrorMsg => _accountErrorMsg;
 
@@ -16,6 +19,9 @@ class RegistNotifier with ChangeNotifier {
 
   String _headImgUrl = 'https://cdn0.popo.tw/uc/default_icons/userpic_L_200x200.jpg';
   String get headImgUrl => _headImgUrl;
+
+  bool _nickNameValid = false;
+  bool get nickNameValid => _nickNameValid;
 
   bool _accountValid = false;
   bool get accountValid => _accountValid;
@@ -36,6 +42,22 @@ class RegistNotifier with ChangeNotifier {
   bool get imgLocal => _imgLocal;
 
   bool hidePassword = true;
+
+  void nickNameValidating({
+    required String fieldValue,
+  }) {
+    if (fieldValue.length < 11 && fieldValue.length > 0) {
+      _nickNameValid = true;
+      _nickNameErrorMsg = null;
+    } else if (fieldValue.length == 0) {
+      _nickNameValid = false;
+      _nickNameErrorMsg = "暱稱不得為空";
+    }else{
+      _nickNameValid = false;
+      _nickNameErrorMsg = "暱稱不可超過10個字";
+    }
+    notifyListeners();
+  }
 
   void accountValidating({
     required String fieldValue,

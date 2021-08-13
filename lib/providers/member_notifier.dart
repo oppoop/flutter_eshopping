@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class MemberDetails with ChangeNotifier{
+class MemberDetailsNotifier with ChangeNotifier{
 
   bool _memberNickname = true;
   bool get memberNickname => _memberNickname;
@@ -14,7 +14,14 @@ class MemberDetails with ChangeNotifier{
   bool _memberBirth = true;
   bool get memberBirth => _memberBirth;
 
-
+  Future<void> saveAccount({required String account,required String password,}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('account', account);
+    prefs.setString('password', password);
+    print(account);
+    print(password);
+    notifyListeners();
+  }
 
   Future<void> getDetail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

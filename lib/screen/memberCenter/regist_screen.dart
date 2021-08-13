@@ -1,13 +1,15 @@
 import 'dart:io';
-
+import 'package:flutter_eshopping/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
 import 'package:flutter_eshopping/providers/regist_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/providers/login_status_notifier.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/utils/getImage.dart';
+
 
 class regist extends StatefulWidget {
   @override
@@ -25,6 +27,8 @@ class _regist extends State<regist> {
   FocusNode confirmFocus = FocusNode();
   FocusNode phoneFocus = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +165,10 @@ class _regist extends State<regist> {
                               keyboardType: TextInputType.text,
                               controller: nickNameController,
                               decoration: memberInputDecoration(
-                                  Icons.person, '請輸入暱稱', null, null),
+                                  Icons.person, '請輸入暱稱', regist.nickNameErrorMsg, null),
+                              onChanged: (text){
+                                Provider.of<RegistNotifier>(context,listen: false).nickNameValidating(fieldValue: nickNameController.text);
+                              },
                             );
                           },
                         ),
@@ -179,7 +186,7 @@ class _regist extends State<regist> {
                               keyboardType: TextInputType.text,
                               controller: accountController,
                               focusNode: accountFocus,
-                              decoration: memberInputDecoration(Icons.person,
+                              decoration: memberInputDecoration(Icons.mail_outline,
                                   '請輸入信箱', regist.accountErrorMsg, null),
                               onChanged: (text) {
                                 Provider.of<RegistNotifier>(
@@ -292,18 +299,31 @@ class _regist extends State<regist> {
                                     regist.passwordValid &&
                                     regist.confirmValid &&
                                     regist.phoneValid) {
-                                  await Provider.of<LoginStatusNotifier>(
+                                  await Provider.of<MemberDetailsNotifier>(
                                     context,
                                     listen: false,
                                   ).saveAccount(
                                     account: accountController.text,
                                     password: passwordController.text,
                                   );
+                                  Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (BuildContext context) =>AppPage()), (route) => false);
                                 } else {
                                   print('ac = ${regist.accountValid}');
                                   print('ps = ${regist.passwordValid}');
                                   print('con = ${regist.confirmValid}');
                                   print('ph = ${regist.phoneValid}');
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        duration: Duration(seconds: 1),
+                                        backgroundColor: Colors.grey,
+                                        content: Text('資料不正確'),
+                                        action: SnackBarAction(
+                                          label: '',
+                                          onPressed: () {
+                                          },
+                                        ),
+                                      ),
+                                  );
                                 }
                               },
                               shape: RoundedRectangleBorder(
