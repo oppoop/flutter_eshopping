@@ -28,6 +28,15 @@ class _Login extends State<Login> {
           title: Text(
             "登入",
           ),
+          flexibleSpace: Container(
+              decoration:BoxDecoration(
+                  gradient: LinearGradient(
+                      colors:[Colors.indigo,Colors.purple],
+                      begin: Alignment.bottomRight,
+                      end: Alignment.topLeft
+                  )
+              )
+          ),
         ),
         body: Stack(
           children: [

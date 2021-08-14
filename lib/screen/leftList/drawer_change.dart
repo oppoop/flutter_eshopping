@@ -31,10 +31,11 @@ class _DrawerChange extends State<DrawerChange> {
                   status,
                   _,
                   ) {
+                print(status.loginStatus);
                 return status.loginStatus ? member() : visitors(context);
               }),
               decoration: BoxDecoration(
-                color: Colors.black,
+                image: DecorationImage(image: AssetImage('assets/image/drawer_head_weed_2.png'),fit:BoxFit.cover)
               ),
             ),
             Container(child: drawerBottom?DrawerStatus().drawerClose(context):DrawerStatus().drawerOpen(context),),

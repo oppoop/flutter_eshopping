@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 InputDecoration memberInputDecoration(IconData? icons,String hintText,String? errorMsg,IconData? hideIcons) {
   return InputDecoration(
     errorText: errorMsg,
     hintText: hintText,
+    hintStyle: GoogleFonts.notoSerif().copyWith(color: Colors.white),
     suffixIcon: Icon(hideIcons),
     prefixIcon: Icon(icons),
     focusedBorder: OutlineInputBorder(

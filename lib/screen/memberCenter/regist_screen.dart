@@ -43,6 +43,15 @@ class _regist extends State<regist> {
           title: Text(
             "註冊",
           ),
+          flexibleSpace: Container(
+              decoration:BoxDecoration(
+                  gradient: LinearGradient(
+                      colors:[Colors.indigo,Colors.purple],
+                      begin: Alignment.bottomRight,
+                      end: Alignment.topLeft
+                  )
+              )
+          ),
         ),
         body: Stack(
           children: [
@@ -119,7 +128,7 @@ class _regist extends State<regist> {
                                           "點擊上傳",
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.notoSerif()
-                                              .copyWith(fontSize: 12),
+                                              .copyWith(fontSize: 12,color: Colors.white),
                                         ),
                                         decoration: BoxDecoration(
                                             color: Color(0x80000000)),

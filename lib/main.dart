@@ -15,6 +15,7 @@ import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'screen/memberCenter/regist_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
 
@@ -74,7 +75,8 @@ class App extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
-          theme: new ThemeData(brightness: Brightness.dark),
+          theme: new ThemeData(
+              brightness: Brightness.light,),
           home: AppPage(),
         );
       },
@@ -112,6 +114,15 @@ class _AppState extends State<AppPage> {
         actions: [
           CartAppBarAction(),
         ],
+        flexibleSpace: Container(
+          decoration:BoxDecoration(
+            gradient: LinearGradient(
+              colors:[Colors.indigo,Colors.purple],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft
+            )
+          )
+        ),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

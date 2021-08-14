@@ -31,7 +31,7 @@ class _CartScreenState extends State<CartScreen> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               child: Container(
-                height: MediaQuery.of(context).size.height*0.6,
+                height: MediaQuery.of(context).size.height*0.55,
                 padding:EdgeInsets.symmetric(vertical:20,horizontal: 20 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -46,17 +46,20 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     SizedBox(height: 10,),
-                    Text(item.product.name!,style: GoogleFonts.notoSerif().copyWith(),),
+                    Text(item.product.name!,style: GoogleFonts.notoSerif().copyWith(color: Colors.white),),
                     Divider(color: Colors.grey[350],thickness: 3,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(S().numEdit,style: GoogleFonts.notoSerif().copyWith(),),
-                        SizedBox(
-                          height: 50,
-                          width: 70,
+                        Text(S().numEdit,style: GoogleFonts.notoSerif().copyWith(color: Colors.white),),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white,width: 1.5))),
                           child: TextFormField(
+                            style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                             textAlign: TextAlign.center,
+                            textAlignVertical: TextAlignVertical.center,
                             controller: _numController,
                             onChanged:(String productNum){productNum = _numController.text;},
                             keyboardType: TextInputType.number,
@@ -203,6 +206,15 @@ class _CartScreenState extends State<CartScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         centerTitle: true,
+        flexibleSpace: Container(
+            decoration:BoxDecoration(
+                gradient: LinearGradient(
+                    colors:[Colors.indigo,Colors.purple],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft
+                )
+            )
+        ),
         title: Column(
           children: [
             Text(S.current.cart),

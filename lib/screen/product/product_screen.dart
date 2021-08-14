@@ -162,6 +162,15 @@ class _ProductScreenState extends State<ProductScreen> {
         actions: [
           CartAppBarAction(),
         ],
+        flexibleSpace: Container(
+            decoration:BoxDecoration(
+                gradient: LinearGradient(
+                    colors:[Colors.indigo,Colors.purple],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft
+                )
+            )
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

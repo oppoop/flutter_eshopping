@@ -51,6 +51,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
             actions: [
               CartAppBarAction(),
             ],
+            flexibleSpace: Container(
+                decoration:BoxDecoration(
+                    gradient: LinearGradient(
+                        colors:[Colors.indigo,Colors.purple],
+                        begin: Alignment.bottomRight,
+                        end: Alignment.topLeft
+                    )
+                )
+            ),
           ),
           body: TabBarView(
             children:productRows,
