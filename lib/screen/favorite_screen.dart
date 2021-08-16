@@ -32,16 +32,9 @@ class _FavoriteState extends State<Favorite> {
     }
   }
 
-  @override
-  void initState() {
-    //selection = category.selections?.first;
-    getFavoriteRow();
-    super.initState();
-  }
   
   @override
   Widget build(BuildContext context) {
-    print(_favorite.toString());
     /*
     List<ProductRow> favoriteRows = favoriteList
         .map((s) => ProductRow(

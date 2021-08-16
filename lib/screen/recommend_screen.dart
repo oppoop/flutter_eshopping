@@ -13,15 +13,28 @@ class RecommendBar extends StatelessWidget {
     );
   }
 }
+
 class Recommend extends StatefulWidget {
   @override
   _RecommendState createState() => _RecommendState();
 }
 
-class _RecommendState extends State<Recommend>{
-
+class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * 0.6,
+          width: MediaQuery.of(context).size.width * 0.5,
+          color: Colors.white,
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.6,
+          width: MediaQuery.of(context).size.width * 0.5,
+          color: Colors.blueAccent,
+        ),
+      ],
+    );
   }
 }

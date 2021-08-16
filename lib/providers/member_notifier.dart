@@ -5,21 +5,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MemberDetailsNotifier with ChangeNotifier{
 
-  bool _memberNickname = true;
-  bool get memberNickname => _memberNickname;
 
-  bool _memberPhone = true;
-  bool get memberPhone => _memberPhone;
-
-  bool _memberBirth = true;
-  bool get memberBirth => _memberBirth;
-
-  Future<void> saveAccount({required String account,required String password,}) async {
+  Future<void> accountRegist({required String nickname,required String account,required String password,required String phone}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('nickName', nickname);
     prefs.setString('account', account);
     prefs.setString('password', password);
+    prefs.setString('phone', phone);
+    print(nickname);
     print(account);
     print(password);
+    print(phone);
     notifyListeners();
   }
 
@@ -29,8 +25,6 @@ class MemberDetailsNotifier with ChangeNotifier{
     print(nickName);
     var phone = prefs.getString('phone');
     print(phone);
-    var birth = prefs.getString('birth');
-    print(birth);
     notifyListeners();
   }
 

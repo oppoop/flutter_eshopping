@@ -17,7 +17,7 @@ class RegistNotifier with ChangeNotifier {
   String? _phoneErrorMsg;
   String? get phoneErrorMsg => _phoneErrorMsg;
 
-  String _headImgUrl = 'https://cdn0.popo.tw/uc/default_icons/userpic_L_200x200.jpg';
+  String _headImgUrl = 'assets/member_head/unknown.jpg';
   String get headImgUrl => _headImgUrl;
 
   bool _nickNameValid = false;

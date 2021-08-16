@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter_eshopping/providers/regist_notifier.dart';
-import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:flutter_eshopping/utils/app_libs.dart';
 import 'drawer_change.dart';
@@ -10,9 +9,9 @@ import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'package:flutter_eshopping/screen/memberCenter/regist_screen.dart';
 
 Widget member() {
-  return Consumer<LoginStatusNotifier>(builder: (
+  return Consumer<LoginNotifier>(builder: (
       context,
-      status,
+      login,
       _,
       ) {
     return Column(
@@ -136,7 +135,7 @@ Widget visitors(context) {
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider<LoginNotifier>(
                 create: (context) => LoginNotifier(),
-                child: Login(),
+                child:Login(),
               ),
             ),
           ),

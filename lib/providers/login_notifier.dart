@@ -15,8 +15,9 @@ class LoginNotifier with ChangeNotifier {
   bool _passwordValid = false;
   bool get passwordValid => _passwordValid;
 
-  bool _loginCheck = false;
-  bool get loginCheck => _loginCheck;
+
+  bool? _loginStatus;
+  bool get loginStatus => _loginStatus!;
 
   bool hidePassword = true;
 
@@ -50,14 +51,25 @@ class LoginNotifier with ChangeNotifier {
   Future<void> loginSubmit({required String accountField,required String passwordFied})
   async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var _account = prefs.getString('account');
-    var _password = prefs.getString('password');
-    if(accountField ==  _account && passwordFied == _password)
+    var account = prefs.getString('account');
+    var password = prefs.getString('password');
+    if(accountField ==  account && passwordFied == password)
     {
-      _loginCheck = true;
+      _loginStatus = true;
+      prefs.setBool('loginStatus', _loginStatus!);
     }
+    print(_loginStatus);
     notifyListeners();
   }
+
+  Future<void> getLoginStatus()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if( prefs.getBool('loginStatus') == null){_loginStatus=false;}
+    else{_loginStatus=true;}
+    print('登入狀態:$_loginStatus');
+    notifyListeners();
+  }
+
 
   void changeHidePassword() {
     hidePassword = !hidePassword;

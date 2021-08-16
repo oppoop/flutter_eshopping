@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 class Login extends StatefulWidget {
   @override
@@ -18,41 +17,31 @@ class _Login extends State<Login> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider<LoginStatusNotifier>(
-        create: (context) => LoginStatusNotifier(),
-      ),
-    ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "登入",
+    return Scaffold(
+      body: Stack(
+        children: [
+          Stack(
+            alignment: Alignment.topLeft,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/image/background_deppsky.jpg'),
+                        fit: BoxFit.cover)),
+              ),
+              IconButton(onPressed:(){
+                Navigator.pop(context);
+              }, icon: Icon(Icons.arrow_back,color: Colors.white,size: 30,))
+            ],
           ),
-          flexibleSpace: Container(
-              decoration:BoxDecoration(
-                  gradient: LinearGradient(
-                      colors:[Colors.indigo,Colors.purple],
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft
-                  )
-              )
-          ),
-        ),
-        body: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/image/background_deppsky.jpg'),
-                      fit: BoxFit.cover)),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('Welcome Back',style:GoogleFonts.dancingScript().copyWith(color: Colors.white,fontSize: 50) ,),
-                Column(
-                  children: [
-                    Container(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Sign Up',style:GoogleFonts.dancingScript().copyWith(color: Colors.white,fontSize: 50) ,),
+              SizedBox(height: 50,),
+              Column(
+                children: [
+                  Container(
                     padding:
                     const EdgeInsets.only(top:15,bottom: 15, left: 10, right: 10),
                     child: Consumer<LoginNotifier>(
@@ -62,6 +51,7 @@ class _Login extends State<Login> {
                           _,
                           ) {
                         return TextFormField(
+                          style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                           keyboardType: TextInputType.text,
                           controller: accountController,
                           focusNode: accountFocus,
@@ -79,72 +69,79 @@ class _Login extends State<Login> {
                       },
                     ),
                   ),
-                    Container(
-                      padding:
-                      const EdgeInsets.only(bottom: 15, left: 10, right: 10),
-                      child: Consumer<LoginNotifier>(
-                        builder: (
-                            context,
-                            login,
-                            _,
-                            ) {
-                          return TextFormField(
-                            keyboardType: TextInputType.text,
-                            controller: passwordController,
-                            focusNode: passwordFocus,
-                            obscureText: login.hidePassword,
-                            decoration: memberInputDecoration(
-                                Icons.lock, '請輸入密碼', login.passwordErrorMsg,null),
-                            onChanged: (text) {
-                              Provider.of<LoginNotifier>(
+                  Container(
+                    padding:
+                    const EdgeInsets.only(bottom: 15, left: 10, right: 10),
+                    child: Consumer<LoginNotifier>(
+                      builder: (
+                          context,
+                          login,
+                          _,
+                          ) {
+                        return TextFormField(
+                          style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                          keyboardType: TextInputType.text,
+                          controller: passwordController,
+                          focusNode: passwordFocus,
+                          obscureText: login.hidePassword,
+                          decoration: memberInputDecoration(
+                              Icons.lock, '請輸入密碼', login.passwordErrorMsg,null),
+                          onChanged: (text) {
+                            Provider.of<LoginNotifier>(
+                              context,
+                              listen: false,
+                            ).passwordValidating(
+                              fieldValue: passwordController.text,
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: Consumer<LoginNotifier>(builder: (
+                          context,
+                          login,
+                          _,
+                          ) {
+                        return RaisedButton(
+                          color: Colors.teal,
+                          onPressed: () async{
+                            if (login.accountValid && login.passwordValid) {
+                              await Provider.of<LoginNotifier>(
                                 context,
                                 listen: false,
-                              ).passwordValidating(
-                                fieldValue: passwordController.text,
+                              ).loginSubmit(
+                                accountField: accountController.text,
+                                passwordFied: passwordController.text,
                               );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                        width: 200,
-                        height: 50,
-                        child: Consumer<LoginNotifier>(builder: (
-                            context,
-                            login,
-                            _,
-                            ) {
-                          return RaisedButton(
-                            color: Colors.teal,
-                            onPressed: () async{
-                              if (login.accountValid && login.passwordValid) {
-                                await Provider.of<LoginNotifier>(
-                                  context,
-                                  listen: false,
-                                ).loginSubmit(
-                                  accountField: accountController.text,
-                                  passwordFied: passwordController.text,
-                                );
-                              } else {
-                                print('ac = ${login.accountValid}');
-                                print('ps = ${login.passwordValid}');
-                              };
-                              if(login.loginCheck){
-                                Provider.of<LoginStatusNotifier>(context,listen: false).getAccount();
-                              }else{return Future.delayed(Duration(seconds: 2),()=>print('登入失敗'));}
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                                side: BorderSide(color: Colors.blue, width: 2)),
-                            textColor: Colors.white,
-                            child: Text("送出"),
-                          );
-                        })),],
-                ),
-              ],
-            ),],
-        ),
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  duration: Duration(seconds: 1),
+                                  backgroundColor: Colors.grey,
+                                  content: Text('帳號密碼錯誤'),
+                                  action: SnackBarAction(
+                                    label: '',
+                                    onPressed: () {
+                                    },
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                              side: BorderSide(color: Colors.blue, width: 2)),
+                          textColor: Colors.white,
+                          child: Text("送出"),
+                        );
+                      })),],
+              ),
+            ],
+          ),],
       ),
     );
   }

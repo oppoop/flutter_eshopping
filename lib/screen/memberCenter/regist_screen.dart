@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
 import 'package:flutter_eshopping/providers/regist_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/utils/getImage.dart';
@@ -34,32 +33,26 @@ class _regist extends State<regist> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LoginStatusNotifier>(
-          create: (context) => LoginStatusNotifier(),
+        ChangeNotifierProvider<MemberDetailsNotifier>(
+          create: (context) => MemberDetailsNotifier(),
         ),
       ],
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "註冊",
-          ),
-          flexibleSpace: Container(
-              decoration:BoxDecoration(
-                  gradient: LinearGradient(
-                      colors:[Colors.indigo,Colors.purple],
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft
-                  )
-              )
-          ),
-        ),
         body: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/image/background_deppsky.jpg'),
-                      fit: BoxFit.cover)),
+            Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/image/background_deppsky.jpg'),
+                          fit: BoxFit.cover)),
+                ),
+                IconButton(onPressed:(){
+                  Navigator.pop(context);
+                }, icon: Icon(Icons.arrow_back,color: Colors.white,size: 30,))
+              ],
             ),
             Center(
               child: SingleChildScrollView(
@@ -76,8 +69,8 @@ class _regist extends State<regist> {
                                     listen: false)
                                 .headImgChange(
                               headImgUrl:
-                                  'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
-                              imgLocal: false,
+                                  'assets/member_head/man.jpg',
+                              imgLocal:false,
                             ),
                             child: Text('man'),
                             style: ElevatedButton.styleFrom(
@@ -114,7 +107,7 @@ class _regist extends State<regist> {
                                               ),
                                             )
                                           : Container(
-                                              child: Image.network(
+                                              child: Image.asset(
                                                 regist.headImgUrl,
                                                 fit: BoxFit.cover,
                                                 width: 130,
@@ -145,8 +138,8 @@ class _regist extends State<regist> {
                                       listen: false)
                                   .headImgChange(
                                 headImgUrl:
-                                    'https://cdn.hk01.com/di/media/images/cis/5e32d866aa60062bd0ef6862.jpg/W6uIiIekjbEezHdqtlWO-sZ9HMom1JfBuizIzrosyM4?v=w800',
-                                imgLocal: false,
+                                    'assets/member_head/woman.jpg',
+                                imgLocal:false,
                               );
                             },
                             child: Text('woman'),
@@ -171,6 +164,7 @@ class _regist extends State<regist> {
                             _,
                           ) {
                             return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                               keyboardType: TextInputType.text,
                               controller: nickNameController,
                               decoration: memberInputDecoration(
@@ -192,6 +186,7 @@ class _regist extends State<regist> {
                             _,
                           ) {
                             return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                               keyboardType: TextInputType.text,
                               controller: accountController,
                               focusNode: accountFocus,
@@ -219,6 +214,7 @@ class _regist extends State<regist> {
                             _,
                           ) {
                             return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                               keyboardType: TextInputType.text,
                               controller: passwordController,
                               focusNode: passwordFocus,
@@ -246,6 +242,7 @@ class _regist extends State<regist> {
                             _,
                           ) {
                             return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                               keyboardType: TextInputType.text,
                               controller: confirmController,
                               focusNode: confirmFocus,
@@ -276,6 +273,7 @@ class _regist extends State<regist> {
                             _,
                           ) {
                             return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
                               keyboardType: TextInputType.number,
                               controller: phoneController,
                               focusNode: phoneFocus,
@@ -304,19 +302,19 @@ class _regist extends State<regist> {
                             return RaisedButton(
                               color: Colors.teal,
                               onPressed: () async {
-                                if (regist.accountValid &&
+                                if (regist.nickNameValid &&
+                                    regist.accountValid &&
                                     regist.passwordValid &&
                                     regist.confirmValid &&
                                     regist.phoneValid) {
                                   await Provider.of<MemberDetailsNotifier>(
                                     context,
                                     listen: false,
-                                  ).saveAccount(
-                                    account: accountController.text,
-                                    password: passwordController.text,
-                                  );
+                                  ).accountRegist
+                                    (nickname:nickNameController.text, account: accountController.text, password:passwordController.text, phone:phoneController.text);
                                   Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (BuildContext context) =>AppPage()), (route) => false);
                                 } else {
+                                  print('nc = ${regist.nickNameValid}');
                                   print('ac = ${regist.accountValid}');
                                   print('ps = ${regist.passwordValid}');
                                   print('con = ${regist.confirmValid}');

@@ -1,7 +1,7 @@
 import 'package:flutter_eshopping/providers/change_language_notifier.dart';
+import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'screen/home_screen.dart';
 import 'screen/search_screen.dart';
@@ -22,8 +22,8 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<LoginStatusNotifier>(
-          create: (context) => LoginStatusNotifier(),
+        ChangeNotifierProvider<LoginNotifier>(
+          create: (context) => LoginNotifier(),
         ),
         ChangeNotifierProvider<CartNotifier>(
           create: (context) => CartNotifier(),
@@ -50,12 +50,6 @@ class App extends StatelessWidget {
         _,
       ) {
         return MaterialApp(
-          routes: {
-            //Map<String, WidgetBuilder>
-            "/regist": (context) => new regist(),
-            "/login": (context) => new Login(),
-            "/home": (context) => new Home(),
-          },
           onUnknownRoute: (RouteSettings settings) {
             return MaterialPageRoute<void>(
               settings: settings,
@@ -77,7 +71,7 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: new ThemeData(
               brightness: Brightness.light,),
-          home: AppPage(),
+          home:AppPage(),
         );
       },
     );
@@ -104,7 +98,12 @@ class _AppState extends State<AppPage> {
       Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
     });
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<LoginNotifier>(context,listen: false).getLoginStatus();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

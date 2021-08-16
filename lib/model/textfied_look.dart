@@ -6,7 +6,7 @@ InputDecoration memberInputDecoration(IconData? icons,String hintText,String? er
     hintText: hintText,
     hintStyle: GoogleFonts.notoSerif().copyWith(color: Colors.white),
     suffixIcon: Icon(hideIcons),
-    prefixIcon: Icon(icons),
+    prefixIcon: Icon(icons,color: Colors.white,),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25.0),
       borderSide: BorderSide(

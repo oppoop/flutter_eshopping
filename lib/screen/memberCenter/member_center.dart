@@ -2,7 +2,6 @@ import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/providers/login_status_notifier.dart';
 class MemberCenter extends StatefulWidget {
   @override
   _MemberCenter createState() => _MemberCenter();
@@ -14,19 +13,14 @@ class _MemberCenter extends State<MemberCenter> {
   bool birthEditor = false;
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider<LoginStatusNotifier>(
-        create: (context) => LoginStatusNotifier(),
-      ),
-    ],
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              S().membercenter,
-            ),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            S().membercenter,
           ),
-          body: memberCenter()
-      ),);
+        ),
+        body: memberCenter()
+    );
   }
   Widget memberCenter(){
     return Container(
