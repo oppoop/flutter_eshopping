@@ -46,5 +46,8 @@
   "accountPassError": "Account Or Password Error",
   "signUp": "Sign Up",
   "logIn": "Log In",
-  "logOut": "Log Out"
+  "logOut": "Log Out",
+  "miniGame": "Mini Game",
+  "camera": "Camera",
+  "album": "Album"
 }

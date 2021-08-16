@@ -26,7 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountPassError":
             MessageLookupByLibrary.simpleMessage("Account Or Password Error"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
+        "album": MessageLookupByLibrary.simpleMessage("Album"),
         "birth": MessageLookupByLibrary.simpleMessage("Birth"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cartItems": m0,
         "checkOut": MessageLookupByLibrary.simpleMessage("Check Out"),
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
         "men": MessageLookupByLibrary.simpleMessage("Men"),
+        "miniGame": MessageLookupByLibrary.simpleMessage("Mini Game"),
         "modelSize": MessageLookupByLibrary.simpleMessage("Model Sizes"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),

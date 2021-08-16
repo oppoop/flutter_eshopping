@@ -529,6 +529,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Mini Game`
+  String get miniGame {
+    return Intl.message(
+      'Mini Game',
+      name: 'miniGame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Album`
+  String get album {
+    return Intl.message(
+      'Album',
+      name: 'album',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,7 +7,8 @@ import 'package:flutter_eshopping/utils/app_libs.dart';
 import 'drawer_change.dart';
 import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'package:flutter_eshopping/screen/memberCenter/regist_screen.dart';
-
+import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:google_fonts/google_fonts.dart';
 Widget member() {
   return Consumer<LoginNotifier>(builder: (
       context,
@@ -59,7 +60,8 @@ Widget member() {
           children: [
             Text(
               'NMSL',
-              style: TextStyle(color: Colors.white, fontSize: 17),
+    style: GoogleFonts.notoSerif()
+        .copyWith(fontSize: 17,color: Colors.white)
             ),
           ],
         ),
@@ -67,21 +69,17 @@ Widget member() {
           children: [
             Text(
               'yan@gmail.com',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17,
+          style: GoogleFonts.notoSerif()
+        .copyWith(fontSize: 17,color: Colors.white)
               ),
-            )
           ],
         ),
         Row(
           children: [
             Text(
               '@fuckUbitch',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+                style: GoogleFonts.notoSerif()
+                    .copyWith(fontSize: 12,color: Colors.grey)
             )
           ],
         )
@@ -118,7 +116,8 @@ Widget visitors(context) {
               builder: (context) => Login()
             ),
           ),
-          child: Text("登入"),
+          child: Text(S().login,style: GoogleFonts.notoSerif()
+      .copyWith()),
           color: Colors.blue,
           textColor: Colors.black,
           shape: RoundedRectangleBorder(
@@ -142,7 +141,8 @@ Widget visitors(context) {
               ),
             ),
           ),
-          child: Text("註冊"),
+          child: Text(S().signUp,style: GoogleFonts.notoSerif()
+              .copyWith(),),
           color: Colors.blue,
           textColor: Colors.black,
           shape: RoundedRectangleBorder(

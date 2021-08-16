@@ -157,14 +157,14 @@ class _CartScreenState extends State<CartScreen> {
               Row(
                 children: [
                   Text(
-                    '尺寸:'+item.selectedSize.toString(),
+                    '${S().size}:${item.selectedSize.toString()}',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Theme.of(context).accentColor,
                     ),
                   ),
                   Padding(padding:EdgeInsets.only(left: 10)),
                   Text(
-                    '數量:'+item.selectedNum.toString(),
+                    '${S().number}:${item.selectedNum.toString()}',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Theme.of(context).accentColor,
                     ),

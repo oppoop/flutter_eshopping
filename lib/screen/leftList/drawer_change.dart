@@ -17,11 +17,11 @@ class DrawerChange extends StatefulWidget {
 
 class _DrawerChange extends State<DrawerChange> {
   final double _listSize = 20;
-  var _selectLocal = 'zh_TW';
+  var _selectLocal = Locale('zh','TW');
   List<DropdownMenuItem> _localList() {
     List<DropdownMenuItem> items = [];
     DropdownMenuItem item1 = new DropdownMenuItem(
-        value:'zh_TW' ,
+        value:Locale('zh','TW') ,
         child: SizedBox(
           width: 30,
           height: 30,
@@ -30,7 +30,7 @@ class _DrawerChange extends State<DrawerChange> {
           ),
         ),);
     DropdownMenuItem item2 = new DropdownMenuItem(
-        value: 'en',
+        value: Locale('en'),
         child: SizedBox(
           width: 30,
           height: 30,
@@ -72,8 +72,8 @@ class _DrawerChange extends State<DrawerChange> {
                   onChanged: (dynamic T){
                     setState(() {
                       _selectLocal=T;
-                      if (T == "zh_TW") Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('zh','TW'));
-                      if (T == "en") Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('en'));
+                      if (T == Locale('zh','TW')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('zh','TW'));
+                      if (T == Locale('en')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('en'));
                     });
                   },
                 ),
@@ -103,9 +103,9 @@ class _DrawerChange extends State<DrawerChange> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.list),
+              leading: Icon(Icons.videogame_asset),
               title: Text(
-                '列表',
+                S().miniGame,
                 style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {
@@ -133,7 +133,7 @@ class _DrawerChange extends State<DrawerChange> {
             ListTile(
               leading: Icon(Icons.star),
               title: Text(
-                '登出',
+                S().logOut,
                 style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {

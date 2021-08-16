@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/temp_data.dart';
 import 'package:flutter_eshopping/screen/category/category_tile.dart';
+import 'package:google_fonts/google_fonts.dart';
 class HomeBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -9,7 +10,8 @@ class HomeBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(S.of(context).home),
+          Text(S.of(context).home,style: GoogleFonts.notoSerif()
+              .copyWith()),
         ],
       ),
     );

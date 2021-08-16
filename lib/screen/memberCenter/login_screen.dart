@@ -138,7 +138,7 @@ class _Login extends State<Login> {
                               borderRadius: BorderRadius.circular(50.0),
                               side: BorderSide(color: Colors.blue, width: 2)),
                           textColor: Colors.white,
-                          child: Text("送出"),
+                          child: Text(S().submit),
                         );
                       })),],
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:google_fonts/google_fonts.dart';
 class SearchBar extends StatefulWidget {
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -25,7 +26,9 @@ class _SearchBarState extends State<SearchBar> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    hintText: "搜尋",
+                    hintText: S().search,
+                    hintStyle:GoogleFonts.notoSerif()
+                    .copyWith(),
                     prefixIcon: Icon(Icons.search, color: Colors.black)),
               )),
         ],

@@ -25,7 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accountPassError": MessageLookupByLibrary.simpleMessage("帳號密碼錯誤"),
         "addToCart": MessageLookupByLibrary.simpleMessage("加入購物車"),
+        "album": MessageLookupByLibrary.simpleMessage("相簿"),
         "birth": MessageLookupByLibrary.simpleMessage("生日"),
+        "camera": MessageLookupByLibrary.simpleMessage("拍照"),
         "cart": MessageLookupByLibrary.simpleMessage("購物車"),
         "cartItems": m0,
         "checkOut": MessageLookupByLibrary.simpleMessage("結帳"),
@@ -49,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mail": MessageLookupByLibrary.simpleMessage("信箱"),
         "membercenter": MessageLookupByLibrary.simpleMessage("會員中心"),
         "men": MessageLookupByLibrary.simpleMessage("男士"),
+        "miniGame": MessageLookupByLibrary.simpleMessage("小遊戲"),
         "modelSize": MessageLookupByLibrary.simpleMessage("模特尺寸"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("我的最愛"),
         "newProduct": MessageLookupByLibrary.simpleMessage("新品推薦"),

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_eshopping/utils/pop_widget.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
 enum reportType {errorScreen,errorAccount,others}
 
 class CustomerService extends StatefulWidget {
@@ -22,8 +23,8 @@ class _CustomerServiceState extends State<CustomerService> {
 
   //action sheet
   List _actionSheet = [
-    {"name": "拍照", "icon": Icon(Icons.camera_alt)},
-    {"name": "相册", "icon": Icon(Icons.photo)}
+    {"name": S().camera, "icon": Icon(Icons.camera_alt)},
+    {"name": S().album, "icon": Icon(Icons.photo)}
   ];
 
 
@@ -93,7 +94,7 @@ class _CustomerServiceState extends State<CustomerService> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('客服中心'),
+        title: Text(S().customservice),
       ),
       body: _customService(),
     );
@@ -206,7 +207,7 @@ class _CustomerServiceState extends State<CustomerService> {
             }),
             Padding(padding: EdgeInsets.only(bottom: 20)),
             ElevatedButton(onPressed: (){},
-                child: Text('送出'))
+                child: Text(S().submit))
           ],
         ),
       ),

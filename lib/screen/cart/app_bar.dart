@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'cart_screen.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CartAppBarAction extends StatefulWidget {
   @override
@@ -42,9 +43,8 @@ class _CartAppBarActionState extends State<CartAppBarAction> {
                     child: Center(
                       child: Text(
                         context.watch<CartNotifier>().itemsInCart.length.toString(),
-                        style: TextStyle(
-                          fontSize: 8,
-                        ),
+                        style: GoogleFonts.notoSerif()
+                            .copyWith(fontSize: 8)
                       ),
                     ),
                   ),

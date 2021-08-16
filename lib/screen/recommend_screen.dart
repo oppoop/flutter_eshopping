@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:google_fonts/google_fonts.dart';
 class RecommendBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,7 +8,8 @@ class RecommendBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('新品'),
+          Text(S().newProduct,style: GoogleFonts.notoSerif()
+              .copyWith()),
         ],
       ),
     );

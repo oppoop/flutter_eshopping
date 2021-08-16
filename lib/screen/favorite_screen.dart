@@ -5,6 +5,8 @@ import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/screen/product/product_row.dart';
 import 'package:flutter_eshopping/data_model/product.dart';
 import 'package:flutter_eshopping/temp_data.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:google_fonts/google_fonts.dart';
 class FavoriteBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,8 @@ class FavoriteBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('我的最愛'),
+          Text(S().myFavorite,style: GoogleFonts.notoSerif()
+              .copyWith()),
         ],
       ),
     );

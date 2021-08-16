@@ -46,5 +46,8 @@
   "accountPassError": "帳號密碼錯誤",
   "signUp": "註冊",
   "logIn": "登入",
-  "logOut": "登出"
+  "logOut": "登出",
+  "miniGame": "小遊戲",
+  "camera": "拍照",
+  "album": "相簿"
 }

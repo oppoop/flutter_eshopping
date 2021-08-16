@@ -1,6 +1,6 @@
 import 'data_model/category.dart';
 import 'data_model/product.dart';
-import 'generated/l10n.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
 
 const String manLookRightImageUrl =
     'https://flutter-ui.s3.us-east-2.amazonaws.com/ecommerce/man-look-right.jpg';
