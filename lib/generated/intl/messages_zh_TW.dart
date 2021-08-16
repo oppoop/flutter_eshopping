@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accountPassError": MessageLookupByLibrary.simpleMessage("帳號密碼錯誤"),
         "addToCart": MessageLookupByLibrary.simpleMessage("加入購物車"),
         "birth": MessageLookupByLibrary.simpleMessage("生日"),
         "cart": MessageLookupByLibrary.simpleMessage("購物車"),
@@ -35,6 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterpassword": MessageLookupByLibrary.simpleMessage("請輸入密碼"),
         "enterphone": MessageLookupByLibrary.simpleMessage("請輸入電話"),
         "home": MessageLookupByLibrary.simpleMessage("首頁"),
+        "inputDataError": MessageLookupByLibrary.simpleMessage("輸入資料不正確"),
+        "inputMail": MessageLookupByLibrary.simpleMessage("請輸入信箱"),
+        "inputNickName": MessageLookupByLibrary.simpleMessage("請輸入暱稱"),
+        "inputPassword": MessageLookupByLibrary.simpleMessage("請輸入密碼"),
+        "inputPasswordAgain": MessageLookupByLibrary.simpleMessage("請再次輸入密碼"),
+        "inputPhone": MessageLookupByLibrary.simpleMessage("請輸入電話"),
         "languagechange": MessageLookupByLibrary.simpleMessage("語系切換"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "mail": MessageLookupByLibrary.simpleMessage("信箱"),
@@ -50,10 +57,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "productDetails": MessageLookupByLibrary.simpleMessage("產品詳情"),
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage("請再次輸入密碼"),
         "regist": MessageLookupByLibrary.simpleMessage("註冊"),
+        "registSuccess": MessageLookupByLibrary.simpleMessage("註冊成功"),
         "search": MessageLookupByLibrary.simpleMessage("搜尋"),
         "setting": MessageLookupByLibrary.simpleMessage("設定"),
         "sizeEdit": MessageLookupByLibrary.simpleMessage("修改尺寸"),
         "submit": MessageLookupByLibrary.simpleMessage("送出"),
+        "tapUpload": MessageLookupByLibrary.simpleMessage("點擊上傳"),
         "test": MessageLookupByLibrary.simpleMessage("測試頁面"),
         "total": MessageLookupByLibrary.simpleMessage("總共"),
         "women": MessageLookupByLibrary.simpleMessage("女士")

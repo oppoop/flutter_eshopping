@@ -36,5 +36,10 @@
   "tapUpload": "點擊上傳",
   "inputNickName": "請輸入暱稱",
   "inputMail": "請輸入信箱",
-  "inputPassword": "請輸入密碼"
+  "inputPassword": "請輸入密碼",
+  "inputPasswordAgain": "請再次輸入密碼",
+  "inputPhone": "請輸入電話",
+  "registSuccess": "註冊成功",
+  "inputDataError":"輸入資料不正確",
+  "accountPassError": "帳號密碼錯誤"
 }

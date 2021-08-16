@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/utils/getImage.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
 
 
 class regist extends StatefulWidget {
@@ -118,7 +119,7 @@ class _regist extends State<regist> {
                                         width: 130,
                                         height: 20,
                                         child: Text(
-                                          "點擊上傳",
+                                          S().tapUpload,
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.notoSerif()
                                               .copyWith(fontSize: 12,color: Colors.white),
@@ -168,7 +169,7 @@ class _regist extends State<regist> {
                               keyboardType: TextInputType.text,
                               controller: nickNameController,
                               decoration: memberInputDecoration(
-                                  Icons.person, '請輸入暱稱', regist.nickNameErrorMsg, null),
+                                  Icons.person, S().inputNickName, regist.nickNameErrorMsg, null),
                               onChanged: (text){
                                 Provider.of<RegistNotifier>(context,listen: false).nickNameValidating(fieldValue: nickNameController.text);
                               },
@@ -191,7 +192,7 @@ class _regist extends State<regist> {
                               controller: accountController,
                               focusNode: accountFocus,
                               decoration: memberInputDecoration(Icons.mail_outline,
-                                  '請輸入信箱', regist.accountErrorMsg, null),
+                                  S().inputMail, regist.accountErrorMsg, null),
                               onChanged: (text) {
                                 Provider.of<RegistNotifier>(
                                   context,
@@ -219,7 +220,7 @@ class _regist extends State<regist> {
                               controller: passwordController,
                               focusNode: passwordFocus,
                               decoration: memberInputDecoration(Icons.lock,
-                                  '請輸入密碼', regist.passwordErrorMsg, null),
+                                  S().inputPassword, regist.passwordErrorMsg, null),
                               onChanged: (text) {
                                 Provider.of<RegistNotifier>(
                                   context,
@@ -248,7 +249,7 @@ class _regist extends State<regist> {
                               focusNode: confirmFocus,
                               decoration: memberInputDecoration(
                                   Icons.lock_outline_rounded,
-                                  '請再次輸入密碼',
+                                  S().inputPasswordAgain,
                                   regist.confirmErrorMsg,
                                   null),
                               onChanged: (text) {
@@ -278,7 +279,7 @@ class _regist extends State<regist> {
                               controller: phoneController,
                               focusNode: phoneFocus,
                               decoration: memberInputDecoration(Icons.phone,
-                                  '請輸入電話', regist.phoneErrorMsg, null),
+                                  S().inputPhone, regist.phoneErrorMsg, null),
                               onChanged: (text) {
                                 Provider.of<RegistNotifier>(
                                   context,
@@ -323,7 +324,7 @@ class _regist extends State<regist> {
                                       SnackBar(
                                         duration: Duration(seconds: 1),
                                         backgroundColor: Colors.grey,
-                                        content: Text('資料不正確'),
+                                        content: Text(S().inputDataError),
                                         action: SnackBarAction(
                                           label: '',
                                           onPressed: () {
@@ -338,7 +339,7 @@ class _regist extends State<regist> {
                                   side:
                                       BorderSide(color: Colors.blue, width: 2)),
                               textColor: Colors.white,
-                              child: Text("送出"),
+                              child: Text(S().submit),
                             );
                           })),
                     ],

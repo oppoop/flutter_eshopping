@@ -32,5 +32,14 @@
   "productDetails": "Product Details",
   "modelSize": "Model Sizes",
   "numEdit":"Edit Number",
-  "sizeEdit": "Edit Size"
+  "sizeEdit": "Edit Size",
+  "tapUpload": "Tap to Upload",
+  "inputNickName": "Please enter Nickname",
+  "inputMail": "Please enter Mail",
+  "inputPassword": "Please enter Password",
+  "inputPasswordAgain": "Please enter Password again",
+  "inputPhone": "Please enter Phone",
+  "registSuccess": "Regist Success",
+  "inputDataError":"Input data Error",
+  "accountPassError": "Account Or Password Error"
 }

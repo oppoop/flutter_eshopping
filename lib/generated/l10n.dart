@@ -389,6 +389,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Tap to Upload`
+  String get tapUpload {
+    return Intl.message(
+      'Tap to Upload',
+      name: 'tapUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Nickname`
+  String get inputNickName {
+    return Intl.message(
+      'Please enter Nickname',
+      name: 'inputNickName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Mail`
+  String get inputMail {
+    return Intl.message(
+      'Please enter Mail',
+      name: 'inputMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Password`
+  String get inputPassword {
+    return Intl.message(
+      'Please enter Password',
+      name: 'inputPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Password again`
+  String get inputPasswordAgain {
+    return Intl.message(
+      'Please enter Password again',
+      name: 'inputPasswordAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Phone`
+  String get inputPhone {
+    return Intl.message(
+      'Please enter Phone',
+      name: 'inputPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Regist Success`
+  String get registSuccess {
+    return Intl.message(
+      'Regist Success',
+      name: 'registSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Input data Error`
+  String get inputDataError {
+    return Intl.message(
+      'Input data Error',
+      name: 'inputDataError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Or Password Error`
+  String get accountPassError {
+    return Intl.message(
+      'Account Or Password Error',
+      name: 'accountPassError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

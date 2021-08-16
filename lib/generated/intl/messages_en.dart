@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accountPassError":
+            MessageLookupByLibrary.simpleMessage("Account Or Password Error"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "birth": MessageLookupByLibrary.simpleMessage("Birth"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -38,6 +40,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterphone": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone numbre"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "inputDataError":
+            MessageLookupByLibrary.simpleMessage("Input data Error"),
+        "inputMail": MessageLookupByLibrary.simpleMessage("Please enter Mail"),
+        "inputNickName":
+            MessageLookupByLibrary.simpleMessage("Please enter Nickname"),
+        "inputPassword":
+            MessageLookupByLibrary.simpleMessage("Please enter Password"),
+        "inputPasswordAgain":
+            MessageLookupByLibrary.simpleMessage("Please enter Password again"),
+        "inputPhone":
+            MessageLookupByLibrary.simpleMessage("Please enter Phone"),
         "languagechange":
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -56,10 +69,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage(
             "Please re-enter the password"),
         "regist": MessageLookupByLibrary.simpleMessage("Regist"),
+        "registSuccess": MessageLookupByLibrary.simpleMessage("Regist Success"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "sizeEdit": MessageLookupByLibrary.simpleMessage("Edit Size"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
+        "tapUpload": MessageLookupByLibrary.simpleMessage("Tap to Upload"),
         "test": MessageLookupByLibrary.simpleMessage("TEST"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "women": MessageLookupByLibrary.simpleMessage("Women")

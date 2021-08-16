@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
 class Login extends StatefulWidget {
   @override
   _Login createState() => _Login();
@@ -56,7 +57,7 @@ class _Login extends State<Login> {
                           controller: accountController,
                           focusNode: accountFocus,
                           decoration: memberInputDecoration(
-                              Icons.person, '請輸入帳號', login.accountErrorMsg,null),
+                              Icons.mail_outline_outlined, S().inputMail, login.accountErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<LoginNotifier>(
                               context,
@@ -85,7 +86,7 @@ class _Login extends State<Login> {
                           focusNode: passwordFocus,
                           obscureText: login.hidePassword,
                           decoration: memberInputDecoration(
-                              Icons.lock, '請輸入密碼', login.passwordErrorMsg,null),
+                              Icons.lock, S().inputPassword, login.passwordErrorMsg,null),
                           onChanged: (text) {
                             Provider.of<LoginNotifier>(
                               context,
@@ -123,7 +124,7 @@ class _Login extends State<Login> {
                                 SnackBar(
                                   duration: Duration(seconds: 1),
                                   backgroundColor: Colors.grey,
-                                  content: Text('帳號密碼錯誤'),
+                                  content: Text(S().accountPassError),
                                   action: SnackBarAction(
                                     label: '',
                                     onPressed: () {
