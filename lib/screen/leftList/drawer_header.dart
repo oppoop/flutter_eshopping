@@ -61,24 +61,6 @@ Widget member() {
               'NMSL',
               style: TextStyle(color: Colors.white, fontSize: 17),
             ),
-            SizedBox(
-              height: 30,
-              width: 30,
-              child: IconButton(
-                  icon: Icon(
-                      drawerBottom
-                          ? Icons.keyboard_arrow_up_sharp
-                          : Icons.keyboard_arrow_down_sharp,
-                      size: 30,
-                      color: Colors.blue),
-                  onPressed: null
-                /* () {
-                setState(() {
-                drawerBottom = !drawerBottom;
-                });
-                }*/
-              ),
-            )
           ],
         ),
         Row(

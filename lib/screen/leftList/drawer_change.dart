@@ -2,16 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_eshopping/providers/login_notifier.dart';
-import 'drawer_status.dart';
 import 'drawer_header.dart';
-bool drawerBottom = false;
-
+import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 class DrawerChange extends StatefulWidget {
   @override
   _DrawerChange createState() => _DrawerChange();
 }
 
 class _DrawerChange extends State<DrawerChange> {
+  final double listSize = 20;
   var _selectLocal = 'zh_TW';
   List<DropdownMenuItem> _localList() {
     List<DropdownMenuItem> items = [];
@@ -73,7 +77,68 @@ class _DrawerChange extends State<DrawerChange> {
               )
             ],
           ),
-          Container(child: drawerBottom?DrawerStatus().drawerClose(context):DrawerStatus().drawerOpen(context),),
+      Container(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.person_outline),
+              title: Text(
+                S.of(context).membercenter,
+                style: TextStyle(fontSize: listSize),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<MemberDetailsNotifier>(
+                      create: (context) => MemberDetailsNotifier(),
+                      child: MemberCenter(),
+                    ),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text(
+                '列表',
+                style: TextStyle(fontSize: listSize),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.assignment_ind_sharp),
+              title: Text(
+                S.of(context).customservice,
+                style: TextStyle(fontSize: listSize),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
+                      create: (context) => CustomServiceNotify(),
+                      child: CustomerService(),
+                    ),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.star),
+              title: Text(
+                '登出',
+                style: GoogleFonts.notoSerif(),
+              ),
+              onTap: () {
+              },
+            ),
+          ],
+        ),
+      ),
         ],
       ),
     );

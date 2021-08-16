@@ -6,7 +6,9 @@ class GetImage {
   int _photoIndex = 0;
   List _actionSheet = [
     {"name": "拍照", "icon": Icon(Icons.camera_alt)},
-    {"name": "相册", "icon": Icon(Icons.photo)}
+    {"name": "相册", "icon": Icon(Icons.photo)},
+    {"name": "man", "icon": Icon(Icons.image)},
+    {"name": "woman", "icon": Icon(Icons.image)},
   ];
 
   Future<void> getActionSheet({required BuildContext context}) async {

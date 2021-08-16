@@ -22,12 +22,26 @@ class Recommend extends StatefulWidget {
 class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Stack(
+      alignment: Alignment.centerRight,
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          width: MediaQuery.of(context).size.width * 0.5,
-          color: Colors.white,
+        Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              width: MediaQuery.of(context).size.width ,
+              color: Colors.white,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width*0.5 ,
+              decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(120)
+              ),
+            ),
+          ],
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.6,
