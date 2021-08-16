@@ -32,5 +32,9 @@
   "productDetails": "產品詳情",
   "modelSize": "模特尺寸",
   "numEdit":"修改數量",
-  "sizeEdit": "修改尺寸"
+  "sizeEdit": "修改尺寸",
+  "tapUpload": "點擊上傳",
+  "inputNickName": "請輸入暱稱",
+  "inputMail": "請輸入信箱",
+  "inputPassword": "請輸入密碼"
 }
