@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
 import 'package:flutter_eshopping/providers/member_notifier.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/providers/login_notifier.dart';
 class DrawerStatus {
   final double listSize = 20;
   Widget drawerOpen(context) {
@@ -62,11 +64,11 @@ class DrawerStatus {
           ListTile(
             leading: Icon(Icons.star),
             title: Text(
-              S.of(context).languagechange,
-              style: TextStyle(fontSize: listSize),
+              '登出',
+              style: GoogleFonts.notoSerif(),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
             },
           ),
         ],

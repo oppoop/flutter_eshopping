@@ -133,10 +133,7 @@ Widget visitors(context) {
           onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider<LoginNotifier>(
-                create: (context) => LoginNotifier(),
-                child:Login(),
-              ),
+              builder: (context) => Login()
             ),
           ),
           child: Text("登入"),

@@ -117,6 +117,7 @@ class _Login extends State<Login> {
                                 accountField: accountController.text,
                                 passwordFied: passwordController.text,
                               );
+                              Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(

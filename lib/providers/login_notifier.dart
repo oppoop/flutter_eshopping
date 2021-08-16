@@ -57,8 +57,14 @@ class LoginNotifier with ChangeNotifier {
     {
       _loginStatus = true;
       prefs.setBool('loginStatus', _loginStatus!);
+    }else{
+      _loginStatus = false;
+      prefs.setBool('loginStatus', _loginStatus!);
     }
-    print(_loginStatus);
+    prefs.getBool('loginStatus');
+    print(account);
+    print(password);
+    print(prefs.getBool('loginStatus'));
     notifyListeners();
   }
 
@@ -70,6 +76,13 @@ class LoginNotifier with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> loginOutNotifier()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _loginStatus = false;
+    prefs.setBool('loginStatus', _loginStatus!);
+    prefs.getBool('loginStatus');
+    print(prefs.getBool('loginStatus'));
+  }
 
   void changeHidePassword() {
     hidePassword = !hidePassword;
