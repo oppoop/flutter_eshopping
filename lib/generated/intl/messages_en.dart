@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter Phone"),
         "languagechange":
             MessageLookupByLibrary.simpleMessage("Change Language"),
+        "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
@@ -62,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
         "numEdit": MessageLookupByLibrary.simpleMessage("Edit Number"),
+        "number": MessageLookupByLibrary.simpleMessage("Number"),
         "pet": MessageLookupByLibrary.simpleMessage("Pet"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "productDetails":
@@ -72,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "registSuccess": MessageLookupByLibrary.simpleMessage("Regist Success"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "size": MessageLookupByLibrary.simpleMessage("Size"),
         "sizeEdit": MessageLookupByLibrary.simpleMessage("Edit Size"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "tapUpload": MessageLookupByLibrary.simpleMessage("Tap to Upload"),

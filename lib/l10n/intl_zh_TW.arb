@@ -18,6 +18,8 @@
   "birth": "生日",
   "mail": "信箱",
   "cart": "購物車",
+  "size": "尺寸",
+  "number": "數量",
   "emptyCart": "購物車是空的",
   "cartItems": "{number} 件商品",
   "total": "總共",
@@ -41,5 +43,8 @@
   "inputPhone": "請輸入電話",
   "registSuccess": "註冊成功",
   "inputDataError":"輸入資料不正確",
-  "accountPassError": "帳號密碼錯誤"
+  "accountPassError": "帳號密碼錯誤",
+  "signUp": "註冊",
+  "logIn": "登入",
+  "logOut": "登出"
 }

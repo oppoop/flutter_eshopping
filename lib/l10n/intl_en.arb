@@ -18,6 +18,8 @@
   "birth": "Birth",
   "mail": "Mail",
   "cart": "Cart",
+  "size": "Size",
+  "number": "Number",
   "emptyCart": "Your cart is empty",
   "cartItems": "{number} items",
   "total": "Total",
@@ -41,5 +43,8 @@
   "inputPhone": "Please enter Phone",
   "registSuccess": "Regist Success",
   "inputDataError":"Input data Error",
-  "accountPassError": "Account Or Password Error"
+  "accountPassError": "Account Or Password Error",
+  "signUp": "Sign Up",
+  "logIn": "Log In",
+  "logOut": "Log Out"
 }
