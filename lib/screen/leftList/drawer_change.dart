@@ -9,13 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
+import 'package:flutter_eshopping/providers/change_language_notifier.dart';
 class DrawerChange extends StatefulWidget {
   @override
   _DrawerChange createState() => _DrawerChange();
 }
 
 class _DrawerChange extends State<DrawerChange> {
-  final double listSize = 20;
+  final double _listSize = 20;
   var _selectLocal = 'zh_TW';
   List<DropdownMenuItem> _localList() {
     List<DropdownMenuItem> items = [];
@@ -71,6 +72,8 @@ class _DrawerChange extends State<DrawerChange> {
                   onChanged: (dynamic T){
                     setState(() {
                       _selectLocal=T;
+                      if (T == "zh_TW") Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('zh','TW'));
+                      if (T == "en") Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('en'));
                     });
                   },
                 ),
@@ -85,7 +88,7 @@ class _DrawerChange extends State<DrawerChange> {
               leading: Icon(Icons.person_outline),
               title: Text(
                 S.of(context).membercenter,
-                style: TextStyle(fontSize: listSize),
+                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {
                 Navigator.push(
@@ -103,7 +106,7 @@ class _DrawerChange extends State<DrawerChange> {
               leading: Icon(Icons.list),
               title: Text(
                 '列表',
-                style: TextStyle(fontSize: listSize),
+                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -113,7 +116,7 @@ class _DrawerChange extends State<DrawerChange> {
               leading: Icon(Icons.assignment_ind_sharp),
               title: Text(
                 S.of(context).customservice,
-                style: TextStyle(fontSize: listSize),
+                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {
                 Navigator.push(
@@ -131,9 +134,12 @@ class _DrawerChange extends State<DrawerChange> {
               leading: Icon(Icons.star),
               title: Text(
                 '登出',
-                style: GoogleFonts.notoSerif(),
+                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
               ),
               onTap: () {
+                setState(() {
+                  Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
+                });
               },
             ),
           ],

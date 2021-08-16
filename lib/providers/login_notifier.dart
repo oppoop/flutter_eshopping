@@ -72,6 +72,7 @@ class LoginNotifier with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if( prefs.getBool('loginStatus') == null){_loginStatus=false;}
     else{_loginStatus=true;}
+    prefs.setBool('loginStatus', _loginStatus!);
     print('登入狀態:$_loginStatus');
     notifyListeners();
   }
