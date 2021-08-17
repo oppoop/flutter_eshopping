@@ -46,105 +46,118 @@ class _DrawerChange extends State<DrawerChange> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              DrawerHeader(
-                child: Consumer<LoginNotifier>(builder: (
-                    context,
-                    login,
-                    _,
-                    ) {
-                  print(login.loginStatus);
-                  return login.loginStatus ? member() : visitors(context);
-                }),
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage('assets/image/drawer_head_weed_2.png'),fit:BoxFit.cover)
+      decoration: BoxDecoration(
+          image: DecorationImage(image:NetworkImage('https://i.imgur.com/RzYIy0q.jpg'),fit:BoxFit.cover)
+      ),
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          Column(
+            children: <Widget>[
+              Center(
+                child: DrawerHeader(
+                  child: Consumer<LoginNotifier>(builder: (
+                      context,
+                      login,
+                      _,
+                      ) {
+                    print(login.loginStatus);
+                    return login.loginStatus ? member() : visitors(context);
+                  }),
+
                 ),
               ),
-              DropdownButtonHideUnderline(
-                child: new DropdownButton(
-                  value: _selectLocal,
-                  items: _localList(),
-                  onChanged: (dynamic T){
-                    setState(() {
-                      _selectLocal=T;
-                      if (T == Locale('zh','TW')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('zh','TW'));
-                      if (T == Locale('en')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('en'));
-                    });
-                  },
+              Container(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.person_outline),
+                      title: Text(
+                        S.of(context).membercenter,
+                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider<MemberDetailsNotifier>(
+                              create: (context) => MemberDetailsNotifier(),
+                              child: MemberCenter(),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.videogame_asset),
+                      title: Text(
+                        S().miniGame,
+                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.assignment_ind_sharp),
+                      title: Text(
+                        S.of(context).customservice,
+                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
+                              create: (context) => CustomServiceNotify(),
+                              child: CustomerService(),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.settings),
+                      title: Text(
+                        S().settings,
+                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.star),
+                      title: Text(
+                        S().logOut,
+                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
+                        });
+                      },
+                    ),
+                  ],
                 ),
-              )
+              ),
             ],
           ),
-      Container(
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.person_outline),
-              title: Text(
-                S.of(context).membercenter,
-                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider<MemberDetailsNotifier>(
-                      create: (context) => MemberDetailsNotifier(),
-                      child: MemberCenter(),
-                    ),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.videogame_asset),
-              title: Text(
-                S().miniGame,
-                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.assignment_ind_sharp),
-              title: Text(
-                S.of(context).customservice,
-                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
-                      create: (context) => CustomServiceNotify(),
-                      child: CustomerService(),
-                    ),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text(
-                S().logOut,
-                style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
-              ),
-              onTap: () {
+          DropdownButtonHideUnderline(
+            child: new DropdownButton(
+              dropdownColor: Colors.black,
+              value: _selectLocal,
+              items: _localList(),
+              onChanged: (dynamic T){
                 setState(() {
-                  Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
+                  _selectLocal=T;
+                  if (T == Locale('zh','TW')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('zh','TW'));
+                  if (T == Locale('en')) Provider.of<LanguageProvider>(context, listen: false).changeLanguage(locale: Locale('en'));
                 });
               },
             ),
-          ],
-        ),
-      ),
+          )
         ],
       ),
     );

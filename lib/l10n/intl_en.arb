@@ -49,5 +49,14 @@
   "logOut": "Log Out",
   "miniGame": "Mini Game",
   "camera": "Camera",
-  "album": "Album"
+  "album": "Album",
+  "settings": "Settings",
+  "manHead": "Man Avatar",
+  "womanHead": "Woman Avatar",
+  "noneSelectSize": "Please select your size",
+  "confirm": "Confirm",
+  "emptyFavorite": "You haven't choose any product for Favorite",
+  "registSuccess": "Sign up Successful",
+  "loginSuccess": "Log in Successful",
+  "logOutSuccess": "Log out Success"
 }

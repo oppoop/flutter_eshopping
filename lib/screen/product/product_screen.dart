@@ -91,14 +91,20 @@ class _ProductScreenState extends State<ProductScreen> {
     {
       return StatefulBuilder(builder: (BuildContext context,StateSetter setState){
         return Container(
-          color: Colors.grey[200],
+          color: Colors.transparent,
           child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.grey[300],
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white,
             border: Border.all(color: Colors.grey)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  child: Text(S().chooseSize,style: GoogleFonts.notoSerif(),),
+                ),
+                Divider(color: Colors.black38,thickness: 1.5,),
                 ListView.builder(
+                    itemExtent: 50,
                     shrinkWrap: true,
                     itemCount: product.sizes!.length,
                     itemBuilder: (context, index) {
@@ -117,6 +123,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                       );
                     }),
+                Divider(color: Colors.black38,thickness: 1.5,),
                 ElevatedButton(onPressed:()=>Navigator.pop(context), child: Text('確認'),)
               ],
             ),
@@ -329,7 +336,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                       ):Container(),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       _categoryType!?Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -411,11 +418,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       _pageChange
                           ?productModelSize(modelSizeLength: product.modelSize!.length, modelSizeLeading: modelSize, modelSizeList: product.modelSize)
                           :productDetails(detailLength: product.details!.length, detailList: product.details),
-                      SizedBox(height: 10,),
+                      SizedBox(height: 15,),
                       Container(
+                        height: 40,
                         decoration: BoxDecoration(
+                          color: Colors.grey[300],
                         border: Border(
-                          bottom: BorderSide(
+                          top: BorderSide(
                             width: 0.5,
                             color: const Color(0xFF90a4ae),
                           ),
@@ -426,7 +435,19 @@ class _ProductScreenState extends State<ProductScreen> {
                         shrinkWrap: true,
                         itemExtent: 40,
                         children: productSupport,
-                      )
+                      ),
+                      SizedBox(height: 10,),
+                      Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          border: Border(
+                            top: BorderSide(
+                              width: 0.5,
+                              color: const Color(0xFF90a4ae),
+                            ),
+                          ),
+                        ),),
                     ],
                   ),
                 )
@@ -465,17 +486,33 @@ class _ProductScreenState extends State<ProductScreen> {
               width: MediaQuery.of(context).size.width * 0.4,
               child: CallToActionButton(
                 onPressed: () {
-                  context.read<CartNotifier>().add(
-                    OrderItem(
-                      product: product,
-                      selectedSize: _sizeValue,
-                      selectedNum: int.parse(_numController.text),
-                      totalCost:
-                      product.cost! * int.parse(_numController.text),
-                    ),
-                  );
-                  print(_sizeValue);
-                  print(int.parse(_numController.text));
+                  if(_sizeValue == ''){
+                    return ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.grey,
+                          content: Text(S().noneSelectSize),
+                          action: SnackBarAction(
+                            label: S().confirm,
+                            onPressed: () {
+                              _productSizeSheet(context);
+                            },
+                          ),
+                        ),
+                    );
+                  }
+                  else{
+                    context.read<CartNotifier>().add(
+                      OrderItem(
+                        product: product,
+                        selectedSize: _sizeValue,
+                        selectedNum: int.parse(_numController.text),
+                        productPrice: product.cost,
+                        productCost:product.cost! * int.parse(_numController.text),
+                      ),
+                    );
+                    print(_sizeValue);
+                    print(int.parse(_numController.text));
+                  }
                 },
                 labelText: S.current.addToCart,
               ),

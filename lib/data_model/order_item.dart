@@ -11,7 +11,9 @@ class OrderItem {
 
   int? selectedNum;
 
-  double? totalCost;
+  double? productPrice;
 
-  OrderItem({required this.product, this.selectedSize, this.selectedColor,this.selectedNum,this.totalCost});
+  double? productCost;
+
+  OrderItem({required this.product, this.selectedSize, this.selectedColor,this.selectedNum,this.productPrice,this.productCost});
 }

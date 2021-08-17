@@ -4,14 +4,23 @@ class CartNotifier with ChangeNotifier {
   List<OrderItem> itemsInCart = [];
   int? _productNum;
   int? get productNum => _productNum;
+  double? _productCost;
+  double? get productCost => _productCost;
+
 
   double get totalCost {
     double total = 0;
     itemsInCart.forEach((item) {
-      total += item.totalCost!;
+      total += item.productCost!;
     });
     return total;
   }
+
+  double productTotalCost({required price,required number}){
+    _productCost = price * number;
+    notifyListeners();
+    return _productCost!;
+}
 
   void add(OrderItem orderItem) {
     itemsInCart.add(orderItem);

@@ -49,5 +49,14 @@
   "logOut": "登出",
   "miniGame": "小遊戲",
   "camera": "拍照",
-  "album": "相簿"
+  "album": "相簿",
+  "settings": "設定",
+  "manHead": "男生預設頭像",
+  "womanHead": "女生預設頭像",
+  "noneSelectSize": "請先選擇尺寸",
+  "confirm": "確定",
+  "emptyFavorite": "尚無產品加入我的最愛",
+  "registSuccess": "註冊成功",
+  "loginSuccess": "登入成功",
+  "logOutSuccess": "登出成功"
 }

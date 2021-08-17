@@ -16,10 +16,11 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   TextEditingController _numController = TextEditingController();
-  int _sizeCurrent = 0;
+  int? _sizeCurrent;
 
   _showDialog(BuildContext context,OrderItem item)async{
     _numController.text = item.selectedNum.toString();
+    _sizeCurrent = item.product.sizes!.indexOf(item.selectedSize!);
     return await showDialog(
         context: context,
         builder:(context){
@@ -104,7 +105,7 @@ class _CartScreenState extends State<CartScreen> {
                       onPressed:(){
                         Navigator.pop(context);
                         item.selectedNum = int.tryParse(_numController.text );
-                        item.selectedSize = item.product.sizes![_sizeCurrent];
+                        item.selectedSize = item.product.sizes![_sizeCurrent!];
                       } ,
                       child: Text(S().submit),
                     ),
@@ -119,11 +120,13 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   void initState() {
+
     super.initState();
   }
 
   @override
   void dispose() {
+    _numController.dispose();
     super.dispose();
   }
 
@@ -172,7 +175,7 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
               Text(
-                "\$" + item.totalCost!.toStringAsFixed(2),
+                "\$" + item.productCost!.toStringAsFixed(2),
                 style: Theme.of(context).textTheme.subtitle2!.copyWith(
                   color: Theme.of(context).accentColor,
                 ),

@@ -7,6 +7,7 @@ import 'package:flutter_eshopping/data_model/product.dart';
 import 'package:flutter_eshopping/temp_data.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/utils/app_libs.dart';
 class FavoriteBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,17 +39,22 @@ class _FavoriteState extends State<Favorite> {
   
   @override
   Widget build(BuildContext context) {
-    /*
-    List<ProductRow> favoriteRows = favoriteList
-        .map((s) => ProductRow(
-      productID: s,
-      products: products
-          .where((p) => p.productID!.toLowerCase() == s.toLowerCase())
-          .toList(),
-    ))
-        .toList();*/
+   /* List<Product> favoriteProduct = products.where((p) => favoriteList.map((s) => p.productID == s).toList() ).toList();*/
 
-    return Container();
+    return Consumer<FavoriteNotify>(
+      builder: (context, favorite, child,) {
+        if (favoriteList.length == 0) {
+          return Center(
+            child: AppLibScreen.appText(
+              text: S.current.emptyFavorite,
+            ),
+          );
+        } else {
+          return Container(
+          );
+        }
+      },
+    );
   }
 
 }

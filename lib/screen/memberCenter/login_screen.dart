@@ -42,73 +42,95 @@ class _Login extends State<Login> {
               SizedBox(height: 50,),
               Column(
                 children: [
-                  Container(
-                    padding:
-                    const EdgeInsets.only(top:15,bottom: 15, left: 10, right: 10),
-                    child: Consumer<LoginNotifier>(
-                      builder: (
-                          context,
-                          login,
-                          _,
-                          ) {
-                        return TextFormField(
-                          style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                          keyboardType: TextInputType.text,
-                          controller: accountController,
-                          focusNode: accountFocus,
-                          decoration: memberInputDecoration(
-                              Icons.mail_outline_outlined, S().inputMail, login.accountErrorMsg,null),
-                          onChanged: (text) {
-                            Provider.of<LoginNotifier>(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.mail_outline_outlined,color: Colors.white,size: 30,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.7,
+                        padding:
+                        const EdgeInsets.symmetric(vertical: 10),
+                        child: Consumer<LoginNotifier>(
+                          builder: (
                               context,
-                              listen: false,
-                            ).accountValidating(
-                              fieldValue: accountController.text,
+                              login,
+                              _,
+                              ) {
+                            return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                              keyboardType: TextInputType.text,
+                              controller: accountController,
+                              focusNode: accountFocus,
+                              decoration: memberInputDecoration(
+                                  Icons.mail_outline_outlined, S().inputMail, login.accountErrorMsg,null),
+                              onChanged: (text) {
+                                Provider.of<LoginNotifier>(
+                                  context,
+                                  listen: false,
+                                ).accountValidating(
+                                  fieldValue: accountController.text,
+                                );
+                              },
                             );
                           },
-                        );
-                      },
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    padding:
-                    const EdgeInsets.only(bottom: 15, left: 10, right: 10),
-                    child: Consumer<LoginNotifier>(
-                      builder: (
-                          context,
-                          login,
-                          _,
-                          ) {
-                        return TextFormField(
-                          style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                          keyboardType: TextInputType.text,
-                          controller: passwordController,
-                          focusNode: passwordFocus,
-                          obscureText: login.hidePassword,
-                          decoration: memberInputDecoration(
-                              Icons.lock, S().inputPassword, login.passwordErrorMsg,null),
-                          onChanged: (text) {
-                            Provider.of<LoginNotifier>(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.lock,color: Colors.white,size: 30,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.7,
+                        padding:
+                        const EdgeInsets.symmetric(vertical: 10),
+                        child: Consumer<LoginNotifier>(
+                          builder: (
                               context,
-                              listen: false,
-                            ).passwordValidating(
-                              fieldValue: passwordController.text,
+                              login,
+                              _,
+                              ) {
+                            return TextFormField(
+                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                              keyboardType: TextInputType.text,
+                              controller: passwordController,
+                              focusNode: passwordFocus,
+                              obscureText: login.hidePassword,
+                              decoration: memberInputDecoration(
+                                  Icons.lock, S().inputPassword, login.passwordErrorMsg,null),
+                              onChanged: (text) {
+                                Provider.of<LoginNotifier>(
+                                  context,
+                                  listen: false,
+                                ).passwordValidating(
+                                  fieldValue: passwordController.text,
+                                );
+                              },
                             );
                           },
-                        );
-                      },
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: 50,),
                   SizedBox(
-                      width: 200,
+                      width: 100,
                       height: 50,
                       child: Consumer<LoginNotifier>(builder: (
                           context,
                           login,
                           _,
                           ) {
-                        return RaisedButton(
-                          color: Colors.teal,
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.blueAccent,
+                              onPrimary: Colors.white,
+                              shadowColor: Colors.grey.shade700,
+                              elevation: 5,
+                              shape: const BeveledRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(5)))),
                           onPressed: () async{
                             if (login.accountValid && login.passwordValid) {
                               await Provider.of<LoginNotifier>(
@@ -118,26 +140,34 @@ class _Login extends State<Login> {
                                 accountField: accountController.text,
                                 passwordFied: passwordController.text,
                               );
-                              Navigator.pop(context);
+                              if(login.loginStatus){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    duration: Duration(seconds: 2),
+                                    backgroundColor: Colors.grey,
+                                    content: Text(S().loginSuccess),
+                                  ),
+                                ).closed.then((value) => Navigator.pop(context))
+                                ;}
+                              else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    duration: Duration(seconds: 1),
+                                    backgroundColor: Colors.grey,
+                                    content: Text(S().accountPassError),
+                                  ),
+                                );
+                              }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   duration: Duration(seconds: 1),
                                   backgroundColor: Colors.grey,
-                                  content: Text(S().accountPassError),
-                                  action: SnackBarAction(
-                                    label: '',
-                                    onPressed: () {
-                                    },
-                                  ),
+                                  content: Text(S().inputDataError),
                                 ),
                               );
                             }
                           },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              side: BorderSide(color: Colors.blue, width: 2)),
-                          textColor: Colors.white,
                           child: Text(S().submit),
                         );
                       })),],

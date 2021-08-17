@@ -18,7 +18,6 @@ import 'screen/memberCenter/regist_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
-
   runApp(
     MultiProvider(
       providers: [

@@ -70,8 +70,9 @@ class LoginNotifier with ChangeNotifier {
 
   Future<void> getLoginStatus()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if( prefs.getBool('loginStatus') == null){_loginStatus=false;}
-    else{_loginStatus=true;}
+    print(prefs.getBool('loginStatus'));
+    if( prefs.getBool('loginStatus') == true){_loginStatus=true;}
+    else{_loginStatus=false;}
     prefs.setBool('loginStatus', _loginStatus!);
     print('登入狀態:$_loginStatus');
     notifyListeners();

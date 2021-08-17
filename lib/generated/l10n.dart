@@ -470,10 +470,10 @@ class S {
     );
   }
 
-  /// `Regist Success`
+  /// `Sign up Successful`
   String get registSuccess {
     return Intl.message(
-      'Regist Success',
+      'Sign up Successful',
       name: 'registSuccess',
       desc: '',
       args: [],
@@ -555,6 +555,86 @@ class S {
     return Intl.message(
       'Album',
       name: 'album',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Man Avatar`
+  String get manHead {
+    return Intl.message(
+      'Man Avatar',
+      name: 'manHead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Woman Avatar`
+  String get womanHead {
+    return Intl.message(
+      'Woman Avatar',
+      name: 'womanHead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your size`
+  String get noneSelectSize {
+    return Intl.message(
+      'Please select your size',
+      name: 'noneSelectSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't choose any product for Favorite`
+  String get emptyFavorite {
+    return Intl.message(
+      'You haven\'t choose any product for Favorite',
+      name: 'emptyFavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in Successful`
+  String get loginSuccess {
+    return Intl.message(
+      'Log in Successful',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out Success`
+  String get logOutSuccess {
+    return Intl.message(
+      'Log out Success',
+      name: 'logOutSuccess',
       desc: '',
       args: [],
     );

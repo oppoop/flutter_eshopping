@@ -27,8 +27,7 @@ class _regist extends State<regist> {
   FocusNode confirmFocus = FocusNode();
   FocusNode phoneFocus = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-
+  double _fieldVer =15;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +63,7 @@ class _regist extends State<regist> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ElevatedButton(
+                          /*ElevatedButton(
                             onPressed: () => Provider.of<RegistNotifier>(
                                     context,
                                     listen: false)
@@ -82,7 +81,7 @@ class _regist extends State<regist> {
                                 shape: const BeveledRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)))),
-                          ),
+                          ),*/
                           Consumer<RegistNotifier>(
                             builder: (
                               context,
@@ -133,7 +132,7 @@ class _regist extends State<regist> {
                               );
                             },
                           ),
-                          ElevatedButton(
+                          /*ElevatedButton(
                             onPressed: () {
                               Provider.of<RegistNotifier>(context,
                                       listen: false)
@@ -152,156 +151,195 @@ class _regist extends State<regist> {
                                 shape: const BeveledRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)))),
+                          ),*/
+                        ],
+                      ),
+                      SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.person,color: Colors.white,size: 30,),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            padding: EdgeInsets.symmetric(vertical: _fieldVer),
+                            child: Consumer<RegistNotifier>(
+                              builder: (
+                                  context,
+                                  regist,
+                                  _,
+                                  ) {
+                                return TextFormField(
+                                  style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                                  keyboardType: TextInputType.text,
+                                  controller: nickNameController,
+                                  decoration: memberInputDecoration(
+                                      Icons.person, S().inputNickName, regist.nickNameErrorMsg, null),
+                                  onChanged: (text){
+                                    Provider.of<RegistNotifier>(context,listen: false).nickNameValidating(fieldValue: nickNameController.text);
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Consumer<RegistNotifier>(
-                          builder: (
-                            context,
-                            regist,
-                            _,
-                          ) {
-                            return TextFormField(
-                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                              keyboardType: TextInputType.text,
-                              controller: nickNameController,
-                              decoration: memberInputDecoration(
-                                  Icons.person, S().inputNickName, regist.nickNameErrorMsg, null),
-                              onChanged: (text){
-                                Provider.of<RegistNotifier>(context,listen: false).nickNameValidating(fieldValue: nickNameController.text);
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 10),
-                        child: Consumer<RegistNotifier>(
-                          builder: (
-                            context,
-                            regist,
-                            _,
-                          ) {
-                            return TextFormField(
-                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                              keyboardType: TextInputType.text,
-                              controller: accountController,
-                              focusNode: accountFocus,
-                              decoration: memberInputDecoration(Icons.mail_outline,
-                                  S().inputMail, regist.accountErrorMsg, null),
-                              onChanged: (text) {
-                                Provider.of<RegistNotifier>(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.mail_outline_outlined,color: Colors.white,size: 30,),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            padding: EdgeInsets.symmetric(vertical: _fieldVer),
+                            child: Consumer<RegistNotifier>(
+                              builder: (
                                   context,
-                                  listen: false,
-                                ).accountValidating(
-                                  fieldValue: accountController.text,
+                                  regist,
+                                  _,
+                                  ) {
+                                return TextFormField(
+                                  style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                                  keyboardType: TextInputType.text,
+                                  controller: accountController,
+                                  focusNode: accountFocus,
+                                  decoration: memberInputDecoration(Icons.mail_outline,
+                                      S().inputMail, regist.accountErrorMsg, null),
+                                  onChanged: (text) {
+                                    Provider.of<RegistNotifier>(
+                                      context,
+                                      listen: false,
+                                    ).accountValidating(
+                                      fieldValue: accountController.text,
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Consumer<RegistNotifier>(
-                          builder: (
-                            context,
-                            regist,
-                            _,
-                          ) {
-                            return TextFormField(
-                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                              keyboardType: TextInputType.text,
-                              controller: passwordController,
-                              focusNode: passwordFocus,
-                              decoration: memberInputDecoration(Icons.lock,
-                                  S().inputPassword, regist.passwordErrorMsg, null),
-                              onChanged: (text) {
-                                Provider.of<RegistNotifier>(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.lock,color: Colors.white,size: 30,),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            padding: EdgeInsets.symmetric(vertical: _fieldVer),
+                            child: Consumer<RegistNotifier>(
+                              builder: (
                                   context,
-                                  listen: false,
-                                ).passwordValidating(
-                                  fieldValue: passwordController.text,
+                                  regist,
+                                  _,
+                                  ) {
+                                return TextFormField(
+                                  style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                                  keyboardType: TextInputType.text,
+                                  controller: passwordController,
+                                  focusNode: passwordFocus,
+                                  decoration: memberInputDecoration(Icons.lock,
+                                      S().inputPassword, regist.passwordErrorMsg, null),
+                                  onChanged: (text) {
+                                    Provider.of<RegistNotifier>(
+                                      context,
+                                      listen: false,
+                                    ).passwordValidating(
+                                      fieldValue: passwordController.text,
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Consumer<RegistNotifier>(
-                          builder: (
-                            context,
-                            regist,
-                            _,
-                          ) {
-                            return TextFormField(
-                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                              keyboardType: TextInputType.text,
-                              controller: confirmController,
-                              focusNode: confirmFocus,
-                              decoration: memberInputDecoration(
-                                  Icons.lock_outline_rounded,
-                                  S().inputPasswordAgain,
-                                  regist.confirmErrorMsg,
-                                  null),
-                              onChanged: (text) {
-                                Provider.of<RegistNotifier>(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.lock_outline_rounded,color: Colors.white,size: 30,),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            padding: EdgeInsets.symmetric(vertical: _fieldVer),
+                            child: Consumer<RegistNotifier>(
+                              builder: (
                                   context,
-                                  listen: false,
-                                ).confirmValidating(
-                                    passwordValue: passwordController.text,
-                                    confirmValue: confirmController.text);
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Consumer<RegistNotifier>(
-                          builder: (
-                            context,
-                            regist,
-                            _,
-                          ) {
-                            return TextFormField(
-                              style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
-                              keyboardType: TextInputType.number,
-                              controller: phoneController,
-                              focusNode: phoneFocus,
-                              decoration: memberInputDecoration(Icons.phone,
-                                  S().inputPhone, regist.phoneErrorMsg, null),
-                              onChanged: (text) {
-                                Provider.of<RegistNotifier>(
-                                  context,
-                                  listen: false,
-                                ).phoneValidating(
-                                  fieldValue: phoneController.text,
+                                  regist,
+                                  _,
+                                  ) {
+                                return TextFormField(
+                                  style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                                  keyboardType: TextInputType.text,
+                                  controller: confirmController,
+                                  focusNode: confirmFocus,
+                                  decoration: memberInputDecoration(
+                                      Icons.lock_outline_rounded,
+                                      S().inputPasswordAgain,
+                                      regist.confirmErrorMsg,
+                                      null),
+                                  onChanged: (text) {
+                                    Provider.of<RegistNotifier>(
+                                      context,
+                                      listen: false,
+                                    ).confirmValidating(
+                                        passwordValue: passwordController.text,
+                                        confirmValue: confirmController.text);
+                                  },
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.phone,color: Colors.white,size: 30,),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            padding: EdgeInsets.symmetric(vertical: _fieldVer),
+                            child: Consumer<RegistNotifier>(
+                              builder: (
+                                  context,
+                                  regist,
+                                  _,
+                                  ) {
+                                return TextFormField(
+                                  style: GoogleFonts.notoSerif().copyWith(color: Colors.white),
+                                  keyboardType: TextInputType.number,
+                                  controller: phoneController,
+                                  focusNode: phoneFocus,
+                                  decoration: memberInputDecoration(Icons.phone,
+                                      S().inputPhone, regist.phoneErrorMsg, null),
+                                  onChanged: (text) {
+                                    Provider.of<RegistNotifier>(
+                                      context,
+                                      listen: false,
+                                    ).phoneValidating(
+                                      fieldValue: phoneController.text,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30,),
                       SizedBox(
-                          width: 200,
+                          width: 100,
                           height: 50,
                           child: Consumer<RegistNotifier>(builder: (
                             context,
                             regist,
                             _,
                           ) {
-                            return RaisedButton(
-                              color: Colors.teal,
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueAccent,
+                                  onPrimary: Colors.white,
+                                  shadowColor: Colors.grey.shade700,
+                                  elevation: 5,
+                                  shape: const BeveledRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(5)))),
                               onPressed: () async {
                                 if (regist.nickNameValid &&
                                     regist.accountValid &&
@@ -313,7 +351,13 @@ class _regist extends State<regist> {
                                     listen: false,
                                   ).accountRegist
                                     (nickname:nickNameController.text, account: accountController.text, password:passwordController.text, phone:phoneController.text);
-                                  Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (BuildContext context) =>AppPage()), (route) => false);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: Duration(seconds: 2),
+                                      backgroundColor: Colors.grey,
+                                      content: Text(S().registSuccess),
+                                    ),
+                                  ).closed.then((value) => Navigator.pop(context));
                                 } else {
                                   print('nc = ${regist.nickNameValid}');
                                   print('ac = ${regist.accountValid}');
@@ -325,20 +369,10 @@ class _regist extends State<regist> {
                                         duration: Duration(seconds: 1),
                                         backgroundColor: Colors.grey,
                                         content: Text(S().inputDataError),
-                                        action: SnackBarAction(
-                                          label: '',
-                                          onPressed: () {
-                                          },
-                                        ),
                                       ),
                                   );
                                 }
                               },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  side:
-                                      BorderSide(color: Colors.blue, width: 2)),
-                              textColor: Colors.white,
                               child: Text(S().submit),
                             );
                           })),

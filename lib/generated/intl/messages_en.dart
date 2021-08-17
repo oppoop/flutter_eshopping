@@ -33,8 +33,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "cartItems": m0,
         "checkOut": MessageLookupByLibrary.simpleMessage("Check Out"),
         "chooseSize": MessageLookupByLibrary.simpleMessage("Choose your size"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "customservice": MessageLookupByLibrary.simpleMessage("Custom Service"),
         "emptyCart": MessageLookupByLibrary.simpleMessage("Your cart is empty"),
+        "emptyFavorite": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t choose any product for Favorite"),
         "enteremail":
             MessageLookupByLibrary.simpleMessage("Please enter the email"),
         "enterpassword":
@@ -57,8 +60,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "logOutSuccess":
+            MessageLookupByLibrary.simpleMessage("Log out Success"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginSuccess":
+            MessageLookupByLibrary.simpleMessage("Log in Successful"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
+        "manHead": MessageLookupByLibrary.simpleMessage("Man Avatar"),
         "membercenter": MessageLookupByLibrary.simpleMessage("Member Center"),
         "men": MessageLookupByLibrary.simpleMessage("Men"),
         "miniGame": MessageLookupByLibrary.simpleMessage("Mini Game"),
@@ -66,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
         "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
+        "noneSelectSize":
+            MessageLookupByLibrary.simpleMessage("Please select your size"),
         "numEdit": MessageLookupByLibrary.simpleMessage("Edit Number"),
         "number": MessageLookupByLibrary.simpleMessage("Number"),
         "pet": MessageLookupByLibrary.simpleMessage("Pet"),
@@ -75,9 +85,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "reenterpasswoed": MessageLookupByLibrary.simpleMessage(
             "Please re-enter the password"),
         "regist": MessageLookupByLibrary.simpleMessage("Regist"),
-        "registSuccess": MessageLookupByLibrary.simpleMessage("Regist Success"),
+        "registSuccess":
+            MessageLookupByLibrary.simpleMessage("Sign up Successful"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "size": MessageLookupByLibrary.simpleMessage("Size"),
         "sizeEdit": MessageLookupByLibrary.simpleMessage("Edit Size"),
@@ -85,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tapUpload": MessageLookupByLibrary.simpleMessage("Tap to Upload"),
         "test": MessageLookupByLibrary.simpleMessage("TEST"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "womanHead": MessageLookupByLibrary.simpleMessage("Woman Avatar"),
         "women": MessageLookupByLibrary.simpleMessage("Women")
       };
 }
