@@ -104,8 +104,18 @@ class _CartScreenState extends State<CartScreen> {
                     ElevatedButton(
                       onPressed:(){
                         Navigator.pop(context);
-                        item.selectedNum = int.tryParse(_numController.text );
-                        item.selectedSize = item.product.sizes![_sizeCurrent!];
+                        context.read<CartNotifier>().remove(item);
+                        context.read<CartNotifier>().add(
+                          OrderItem(
+                            product: item.product,
+                            selectedSize: item.product.sizes![_sizeCurrent!],
+                            selectedNum: int.parse(_numController.text),
+                            productPrice: item.product.cost,
+                            productCost:
+                            item.product.cost! * int.parse(_numController.text),
+                          ),
+                        );
+
                       } ,
                       child: Text(S().submit),
                     ),
