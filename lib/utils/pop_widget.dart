@@ -1,6 +1,7 @@
 import 'image_viwer_local.dart';
 import 'package:flutter/material.dart';
 import 'image_viwer_online.dart';
+import 'image_viwer_assets.dart';
 
 class popWidget {
   static Future<void> imageViewerDialog({
@@ -22,6 +23,17 @@ class popWidget {
     return showDialog(
       context: context,
       builder: (context) => ImageViewerLocal(imaglocal: img,),
+    );
+  }
+
+  static Future<void> imageAssetsDialog({
+    required BuildContext context,
+    required String img,
+  }) {
+    print(img);
+    return showDialog(
+      context: context,
+      builder: (context) => ImageViewerAssets(imaglocal: img,),
     );
   }
 

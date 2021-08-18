@@ -17,25 +17,26 @@ class DrawerChange extends StatefulWidget {
 
 class _DrawerChange extends State<DrawerChange> {
   final double _listSize = 20;
-  var _selectLocal = Locale('zh','TW');
   List<DropdownMenuItem> _localList() {
     List<DropdownMenuItem> items = [];
     DropdownMenuItem item1 = new DropdownMenuItem(
         value:Locale('zh','TW') ,
-        child: SizedBox(
+        child: Center(child: SizedBox(
           width: 30,
           height: 30,
           child: ClipOval(
             child: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Flag_of_the_Republic_of_China.svg/255px-Flag_of_the_Republic_of_China.svg.png',fit: BoxFit.cover,),
           ),
-        ),);
+        ),),);
     DropdownMenuItem item2 = new DropdownMenuItem(
         value: Locale('en'),
-        child: SizedBox(
-          width: 30,
-          height: 30,
-          child: ClipOval(
-            child: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/300px-Flag_of_the_United_States.svg.png',fit: BoxFit.cover,),
+        child: Center(
+          child: SizedBox(
+            width: 30,
+            height: 30,
+            child: ClipOval(
+              child: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/300px-Flag_of_the_United_States.svg.png',fit: BoxFit.cover,),
+            ),
           ),
         ),);
     items.add(item1);
@@ -45,9 +46,13 @@ class _DrawerChange extends State<DrawerChange> {
 
   @override
   Widget build(BuildContext context) {
+    var _selectLocal = Locale(
+      context.watch<LanguageProvider>().languageCode,
+      context.watch<LanguageProvider>().countryCode,
+    );
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(image:NetworkImage('https://i.imgur.com/RzYIy0q.jpg'),fit:BoxFit.cover)
+          image: DecorationImage(image:AssetImage('assets/image/drawer_background.jpg'),fit:BoxFit.cover)
       ),
       child: Stack(
         alignment: Alignment.bottomRight,
@@ -146,8 +151,8 @@ class _DrawerChange extends State<DrawerChange> {
           ),
           DropdownButtonHideUnderline(
             child: new DropdownButton(
-              dropdownColor: Colors.black,
-              value: _selectLocal,
+              dropdownColor: Colors.transparent,
+              value:_selectLocal,
               items: _localList(),
               onChanged: (dynamic T){
                 setState(() {

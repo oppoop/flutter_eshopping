@@ -2,6 +2,7 @@ import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
@@ -141,9 +142,10 @@ class _Login extends State<Login> {
                                 passwordFied: passwordController.text,
                               );
                               if(login.loginStatus){
+                                Provider.of<MemberDetailsNotifier>(context,listen: false).getDetail();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    duration: Duration(seconds: 2),
+                                    duration: Duration(seconds: 1),
                                     backgroundColor: Colors.grey,
                                     content: Text(S().loginSuccess),
                                   ),

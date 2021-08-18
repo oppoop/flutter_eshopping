@@ -350,10 +350,11 @@ class _regist extends State<regist> {
                                     context,
                                     listen: false,
                                   ).accountRegist
-                                    (nickname:nickNameController.text, account: accountController.text, password:passwordController.text, phone:phoneController.text);
+                                    (nickname:nickNameController.text, account: accountController.text, password:passwordController.text, phone:phoneController.text
+                                  ,head: regist.headImgUrl,headType: regist.imgLocal);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      duration: Duration(seconds: 2),
+                                      duration: Duration(seconds: 1),
                                       backgroundColor: Colors.grey,
                                       content: Text(S().registSuccess),
                                     ),

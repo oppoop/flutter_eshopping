@@ -117,10 +117,8 @@ class _CartScreenState extends State<CartScreen> {
         }
     );}
 
-
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -221,13 +219,6 @@ class _CartScreenState extends State<CartScreen> {
         title: Column(
           children: [
             Text(S.current.cart),
-            Text(
-              S.current.cartItems(context.watch<CartNotifier>().itemsInCart.length.toString()),
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-              ),
-            )
           ],
         ),
       ),

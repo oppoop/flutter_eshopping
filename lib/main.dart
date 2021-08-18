@@ -16,6 +16,7 @@ import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'screen/memberCenter/regist_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
 
 Future<void> main() async {
   runApp(
@@ -33,6 +34,9 @@ Future<void> main() async {
         ChangeNotifierProvider<LanguageProvider>(
           create: (context) => LanguageProvider(),
         ),
+        ChangeNotifierProvider<MemberDetailsNotifier>(
+          create: (context) => MemberDetailsNotifier(),
+        )
       ],
       child: App(),
     ),
@@ -69,8 +73,9 @@ class App extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: new ThemeData(
-              brightness: Brightness.light,),
-          home:AppPage(),
+            brightness: Brightness.light,
+          ),
+          home: AppPage(),
         );
       },
     );
@@ -84,25 +89,31 @@ class AppPage extends StatefulWidget {
 
 class _AppState extends State<AppPage> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Home(), Search(), Recommend(), Favorite()];
+  final List<Widget> _children = [
+    Home(),
+    /*Search(), Recommend(),*/ Favorite()
+  ];
   final List<Widget> _appBar = [
     HomeBar(),
-    SearchBar(),
-    RecommendBar(),
+    /*SearchBar(),
+    RecommendBar(),*/
     FavoriteBar()
   ];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
-      Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
+      /*Provider.of<FavoriteNotify>(context, listen: false).getFavorite();*/
     });
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<LoginNotifier>(context,listen: false).getLoginStatus();
+    Provider.of<LoginNotifier>(context, listen: false).getLoginStatus();
+    Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,14 +124,11 @@ class _AppState extends State<AppPage> {
           CartAppBarAction(),
         ],
         flexibleSpace: Container(
-          decoration:BoxDecoration(
-            gradient: LinearGradient(
-              colors:[Colors.indigo,Colors.purple],
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft
-            )
-          )
-        ),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.indigo, Colors.purple],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft))),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -130,11 +138,11 @@ class _AppState extends State<AppPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home), label: S.of(context).home),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
               icon: Icon(Icons.search), label: S.of(context).search),
           BottomNavigationBarItem(
               icon: Icon(Icons.local_fire_department),
-              label: S.of(context).newProduct),
+              label: S.of(context).newProduct),*/
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: S.of(context).myFavorite),
         ],

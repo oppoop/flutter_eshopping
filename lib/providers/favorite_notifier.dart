@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_eshopping/data_model/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 List<String> favoriteList = [];
-
 class FavoriteNotify with ChangeNotifier{
   Future<void> favoriteAdd(String productID) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,4 +30,5 @@ class FavoriteNotify with ChangeNotifier{
     print(favoriteList);
     notifyListeners();
   }
+
 }

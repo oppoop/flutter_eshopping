@@ -1,20 +1,21 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter_eshopping/providers/regist_notifier.dart';
 import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:flutter_eshopping/utils/app_libs.dart';
-import 'drawer_change.dart';
+import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'package:flutter_eshopping/screen/memberCenter/regist_screen.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 Widget member() {
-  return Consumer<LoginNotifier>(builder: (
-      context,
-      login,
-      _,
-      ) {
+  return Consumer<MemberDetailsNotifier>(builder: (
+    context,
+    member,
+    _,
+  ) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,29 +23,55 @@ Widget member() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: () async {
-                await popWidget.imageViewerDialog(
-                  context: context,
-                  path:
-                  'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                height: 70,
-                width: 70,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: AppLibScreen.imageContent(
-                    imageOnePath:
-                    'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
-                  ),
-                ),
-              ),
-            ),
+            member.imgLocal
+                ? GestureDetector(
+                    onTap: () async {
+                      await popWidget.imageFileDialog(
+                        context: context,
+                        img:member.imgUrl,
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      height: 70,
+                      width: 70,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                          child: Image.file(
+                            File(
+                              member.imgUrl,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ),
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () async {
+                      await popWidget.imageAssetsDialog(
+                        context: context,
+                        img:member.imgUrl,
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      height: 70,
+                      width: 70,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.asset(
+                          member.imgUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  )
             /*ClipOval(
                 child: Image.network(
                   'https://www.steamxo.com/wp-content/uploads/2019/11/5ggL5q154529_874683.jpg',
@@ -58,31 +85,18 @@ Widget member() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'NMSL',
-    style: GoogleFonts.notoSerif()
-        .copyWith(fontSize: 17,color: Colors.white)
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              'yan@gmail.com',
-          style: GoogleFonts.notoSerif()
-        .copyWith(fontSize: 17,color: Colors.white)
-              ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              '@fuckUbitch',
+            Text(member.nickName,
                 style: GoogleFonts.notoSerif()
-                    .copyWith(fontSize: 12,color: Colors.grey)
-            )
+                    .copyWith(fontSize: 17, color: Colors.white)),
           ],
-        )
+        ),
+        Row(
+          children: [
+            Text(member.account,
+                style: GoogleFonts.notoSerif()
+                    .copyWith(fontSize: 17, color: Colors.white)),
+          ],
+        ),
       ],
     );
   });
@@ -112,12 +126,9 @@ Widget visitors(context) {
         child: FlatButton(
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => Login()
-            ),
+            MaterialPageRoute(builder: (context) => Login()),
           ),
-          child: Text(S().login,style: GoogleFonts.notoSerif()
-      .copyWith()),
+          child: Text(S().login, style: GoogleFonts.notoSerif().copyWith()),
           color: Colors.blue,
           textColor: Colors.black,
           shape: RoundedRectangleBorder(
@@ -141,8 +152,10 @@ Widget visitors(context) {
               ),
             ),
           ),
-          child: Text(S().signUp,style: GoogleFonts.notoSerif()
-              .copyWith(),),
+          child: Text(
+            S().signUp,
+            style: GoogleFonts.notoSerif().copyWith(),
+          ),
           color: Colors.blue,
           textColor: Colors.black,
           shape: RoundedRectangleBorder(

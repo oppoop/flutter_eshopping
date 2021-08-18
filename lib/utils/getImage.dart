@@ -59,14 +59,6 @@ class GetImage {
       'assets/member_head/woman.jpg',
       imgLocal:false,
     );}
-    else{Provider.of<RegistNotifier>(
-        context,
-        listen: false)
-        .headImgChange(
-      headImgUrl:
-      'assets/member_head/man.jpg',
-      imgLocal:false,
-    );}
     /*var image = await picker.getImage(
         source: _photoIndex == 0 ? ImageSource.camera : ImageSource.gallery);*/
     if (image != null) {
