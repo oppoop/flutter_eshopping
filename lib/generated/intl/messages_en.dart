@@ -23,14 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accountAuthentication":
+            MessageLookupByLibrary.simpleMessage("Account Authentication"),
         "accountPassError":
             MessageLookupByLibrary.simpleMessage("Account Or Password Error"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "album": MessageLookupByLibrary.simpleMessage("Album"),
         "birth": MessageLookupByLibrary.simpleMessage("Birth"),
+        "birthDay": MessageLookupByLibrary.simpleMessage("Birth Day"),
+        "browsingRecords":
+            MessageLookupByLibrary.simpleMessage("Browsing records"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cartItems": m0,
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "checkOut": MessageLookupByLibrary.simpleMessage("Check Out"),
         "chooseSize": MessageLookupByLibrary.simpleMessage("Choose your size"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -44,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter the password"),
         "enterphone": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone numbre"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inputDataError":
             MessageLookupByLibrary.simpleMessage("Input data Error"),
@@ -63,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOutSuccess":
             MessageLookupByLibrary.simpleMessage("Log out Success"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginFirst":
+            MessageLookupByLibrary.simpleMessage("Please login first"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Log in Successful"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
@@ -73,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modelSize": MessageLookupByLibrary.simpleMessage("Model Sizes"),
         "myFavorite": MessageLookupByLibrary.simpleMessage("My Favorite"),
         "newProduct": MessageLookupByLibrary.simpleMessage("NEW Product"),
-        "nickName": MessageLookupByLibrary.simpleMessage("NiclName"),
+        "nickName": MessageLookupByLibrary.simpleMessage("NickName"),
         "noneSelectSize":
             MessageLookupByLibrary.simpleMessage("Please select your size"),
         "numEdit": MessageLookupByLibrary.simpleMessage("Edit Number"),

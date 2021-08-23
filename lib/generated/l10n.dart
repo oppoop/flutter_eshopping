@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `NiclName`
+  /// `NickName`
   String get nickName {
     return Intl.message(
-      'NiclName',
+      'NickName',
       name: 'nickName',
       desc: '',
       args: [],
@@ -635,6 +635,66 @@ class S {
     return Intl.message(
       'Log out Success',
       name: 'logOutSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Day`
+  String get birthDay {
+    return Intl.message(
+      'Birth Day',
+      name: 'birthDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Authentication`
+  String get accountAuthentication {
+    return Intl.message(
+      'Account Authentication',
+      name: 'accountAuthentication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please login first`
+  String get loginFirst {
+    return Intl.message(
+      'Please login first',
+      name: 'loginFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browsing records`
+  String get browsingRecords {
+    return Intl.message(
+      'Browsing records',
+      name: 'browsingRecords',
       desc: '',
       args: [],
     );

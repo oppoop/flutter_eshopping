@@ -23,13 +23,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accountAuthentication": MessageLookupByLibrary.simpleMessage("帳號驗證"),
         "accountPassError": MessageLookupByLibrary.simpleMessage("帳號密碼錯誤"),
         "addToCart": MessageLookupByLibrary.simpleMessage("加入購物車"),
         "album": MessageLookupByLibrary.simpleMessage("相簿"),
         "birth": MessageLookupByLibrary.simpleMessage("生日"),
+        "birthDay": MessageLookupByLibrary.simpleMessage("生日"),
+        "browsingRecords": MessageLookupByLibrary.simpleMessage("瀏覽紀錄"),
         "camera": MessageLookupByLibrary.simpleMessage("拍照"),
         "cart": MessageLookupByLibrary.simpleMessage("購物車"),
         "cartItems": m0,
+        "changePassword": MessageLookupByLibrary.simpleMessage("更換密碼"),
         "checkOut": MessageLookupByLibrary.simpleMessage("結帳"),
         "chooseSize": MessageLookupByLibrary.simpleMessage("選擇你的尺寸"),
         "confirm": MessageLookupByLibrary.simpleMessage("確定"),
@@ -39,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enteremail": MessageLookupByLibrary.simpleMessage("請輸入信箱"),
         "enterpassword": MessageLookupByLibrary.simpleMessage("請輸入密碼"),
         "enterphone": MessageLookupByLibrary.simpleMessage("請輸入電話"),
+        "gender": MessageLookupByLibrary.simpleMessage("性別"),
         "home": MessageLookupByLibrary.simpleMessage("首頁"),
         "inputDataError": MessageLookupByLibrary.simpleMessage("輸入資料不正確"),
         "inputMail": MessageLookupByLibrary.simpleMessage("請輸入信箱"),
@@ -51,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("登出"),
         "logOutSuccess": MessageLookupByLibrary.simpleMessage("登出成功"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
+        "loginFirst": MessageLookupByLibrary.simpleMessage("請先登入"),
         "loginSuccess": MessageLookupByLibrary.simpleMessage("登入成功"),
         "mail": MessageLookupByLibrary.simpleMessage("信箱"),
         "manHead": MessageLookupByLibrary.simpleMessage("男生預設頭像"),

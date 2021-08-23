@@ -58,5 +58,14 @@
   "emptyFavorite": "You haven't choose any product for Favorite",
   "registSuccess": "Sign up Successful",
   "loginSuccess": "Log in Successful",
-  "logOutSuccess": "Log out Success"
+  "logOutSuccess": "Log out Success",
+  "nickName": "NickName",
+  "mail": "Mail",
+  "gender": "Gender",
+  "birthDay": "Birth Day",
+  "phone": "Phone",
+  "accountAuthentication": "Account Authentication",
+  "changePassword": "Change Password",
+  "loginFirst": "Please login first",
+  "browsingRecords": "Browsing records"
 }

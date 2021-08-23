@@ -58,5 +58,14 @@
   "emptyFavorite": "尚無產品加入我的最愛",
   "registSuccess": "註冊成功",
   "loginSuccess": "登入成功",
-  "logOutSuccess": "登出成功"
+  "logOutSuccess": "登出成功",
+  "nickName": "暱稱",
+  "mail": "信箱",
+  "gender": "性別",
+  "birthDay": "生日",
+  "phone": "電話",
+  "accountAuthentication": "帳號驗證",
+  "changePassword": "更換密碼",
+  "loginFirst": "請先登入",
+  "browsingRecords": "瀏覽紀錄"
 }
