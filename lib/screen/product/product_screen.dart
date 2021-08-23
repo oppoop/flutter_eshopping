@@ -14,6 +14,7 @@ import 'product_support.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
 import 'package:flutter_eshopping/providers/product_size_notifier.dart';
+import 'package:flutter_eshopping/providers/browsing_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'product_details.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -46,7 +47,8 @@ class _ProductScreenState extends State<ProductScreen> {
     selectedImageUrl = product.imageUrls!.first;
     selectedSize = product.sizes?.first;
     super.initState();
-    _favoriteStatus = favoriteList.contains(product.productID);
+    _favoriteStatus = context.watch<FavoriteNotify>().favoriteList.contains(product.productID);
+    Provider.of<BrowsingRecordNotify>(context).browsingAdd(product.productID!);
     print(_favoriteStatus);
   }
 
