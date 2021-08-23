@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter_eshopping/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
@@ -11,12 +10,8 @@ import 'package:flutter_eshopping/utils/getImage.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 
 
-class regist extends StatefulWidget {
-  @override
-  _regist createState() => _regist();
-}
 
-class _regist extends State<regist> {
+class regist extends StatelessWidget {
   TextEditingController nickNameController = TextEditingController();
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

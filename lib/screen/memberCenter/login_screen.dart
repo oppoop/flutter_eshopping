@@ -6,12 +6,9 @@ import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
-class Login extends StatefulWidget {
-  @override
-  _Login createState() => _Login();
-}
 
-class _Login extends State<Login> {
+
+class Login extends StatelessWidget {
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   FocusNode accountFocus = FocusNode();
