@@ -47,7 +47,7 @@ class _ProductScreenState extends State<ProductScreen> {
     selectedImageUrl = product.imageUrls!.first;
     selectedSize = product.sizes?.first;
     super.initState();
-    _favoriteStatus = context.watch<FavoriteNotify>().favoriteList.contains(product.productID);
+    _favoriteStatus = favoriteList.contains(product.productID);
     Provider.of<BrowsingRecordNotify>(context).browsingAdd(product.productID!);
     print(_favoriteStatus);
   }
