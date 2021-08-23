@@ -111,8 +111,8 @@ Widget visitors(context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ClipOval(
-            child: Image.network(
-              'https://cdn0.popo.tw/uc/default_icons/userpic_L_200x200.jpg',
+            child: Image.asset(
+              'assets/member_head/unknown.jpg',
               fit: BoxFit.cover,
               width: 70,
               height: 70,

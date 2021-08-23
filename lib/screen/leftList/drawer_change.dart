@@ -10,6 +10,7 @@ import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 import 'package:flutter_eshopping/providers/change_language_notifier.dart';
+import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 class DrawerChange extends StatefulWidget {
   @override
   _DrawerChange createState() => _DrawerChange();
@@ -57,98 +58,129 @@ class _DrawerChange extends State<DrawerChange> {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          Column(
-            children: <Widget>[
-              Center(
-                child: DrawerHeader(
-                  child: Consumer<LoginNotifier>(builder: (
-                      context,
-                      login,
-                      _,
-                      ) {
-                    print(login.loginStatus);
-                    return login.loginStatus ? member() : visitors(context);
-                  }),
-
+          Consumer<LoginNotifier>(builder: (
+              context,
+              login,
+              _,
+              ) {
+            return  Column(
+              children: <Widget>[
+                Center(
+                  child: DrawerHeader(
+                    child: login.loginStatus ? member() : visitors(context),
+                  ),
                 ),
-              ),
-              Container(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.person_outline),
-                      title: Text(
-                        S.of(context).membercenter,
-                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider<MemberDetailsNotifier>(
-                              create: (context) => MemberDetailsNotifier(),
-                              child: MemberCenter(),
+                Container(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.person_outline),
+                        title: Text(
+                          S.of(context).membercenter,
+                          style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                        ),
+                        onTap: () {
+                          login.loginStatus
+                              ?Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MemberCenter()
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.videogame_asset),
-                      title: Text(
-                        S().miniGame,
-                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                          )
+                              :showDialog(context: context, builder:(context){
+                                return Dialog(
+                                  backgroundColor: Colors.transparent,
+                                  child: Container(
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(S().loginFirst,style: GoogleFonts.notoSerif(),),
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.blueAccent,
+                                                onPrimary: Colors.white,
+                                                shadowColor: Colors.grey.shade700,
+                                                elevation: 5,
+                                                shape: const BeveledRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.all(Radius.circular(5)))),
+                                            onPressed: (){
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => Login()),
+                                              );
+                                            },
+                                            child: Text(S().login,style: GoogleFonts.notoSerif(),))
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          });
+                        },
                       ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.assignment_ind_sharp),
-                      title: Text(
-                        S.of(context).customservice,
-                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ListTile(
+                        leading: Icon(Icons.videogame_asset),
+                        title: Text(
+                          S().miniGame,
+                          style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
-                              create: (context) => CustomServiceNotify(),
-                              child: CustomerService(),
+                      ListTile(
+                        leading: Icon(Icons.assignment_ind_sharp),
+                        title: Text(
+                          S.of(context).customservice,
+                          style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChangeNotifierProvider<CustomServiceNotify>(
+                                create: (context) => CustomServiceNotify(),
+                                child: CustomerService(),
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.settings),
-                      title: Text(
-                        S().settings,
-                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                          );
+                        },
                       ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.star),
-                      title: Text(
-                        S().logOut,
-                        style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                      ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text(
+                          S().settings,
+                          style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      onTap: () {
-                        setState(() {
-                          Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
-                        });
-                      },
-                    ),
-                  ],
+                      ListTile(
+                        leading: Icon(Icons.star),
+                        title: Text(
+                          S().logOut,
+                          style: GoogleFonts.notoSerif().copyWith(fontSize: _listSize),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            Provider.of<LoginNotifier>(context,listen: false).loginOutNotifier();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          }),
           DropdownButtonHideUnderline(
             child: new DropdownButton(
               dropdownColor: Colors.transparent,

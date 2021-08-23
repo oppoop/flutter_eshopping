@@ -70,7 +70,6 @@ class LoginNotifier with ChangeNotifier {
 
   Future<void> getLoginStatus()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getBool('loginStatus'));
     if( prefs.getBool('loginStatus') == true){_loginStatus=true;}
     else{_loginStatus=false;}
     prefs.setBool('loginStatus', _loginStatus!);
@@ -82,7 +81,6 @@ class LoginNotifier with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _loginStatus = false;
     prefs.setBool('loginStatus', _loginStatus!);
-    prefs.getBool('loginStatus');
     print(prefs.getBool('loginStatus'));
   }
 

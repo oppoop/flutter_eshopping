@@ -2,10 +2,7 @@ import 'package:flutter_eshopping/providers/change_language_notifier.dart';
 import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
 import 'screen/home_screen.dart';
-import 'screen/search_screen.dart';
-import 'screen/recommend_screen.dart';
 import 'screen/favorite_screen.dart';
 import 'screen/leftList/drawer_change.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +11,6 @@ import 'generated/l10n.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
-import 'screen/memberCenter/regist_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/providers/member_notifier.dart';
 
@@ -91,7 +87,8 @@ class _AppState extends State<AppPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
-    /*Search(), Recommend(),*/ Favorite()
+    /*Search(), Recommend(),*/ Favorite(),
+
   ];
   final List<Widget> _appBar = [
     HomeBar(),
@@ -112,6 +109,7 @@ class _AppState extends State<AppPage> {
     super.initState();
     Provider.of<LoginNotifier>(context, listen: false).getLoginStatus();
     Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
+    Provider.of<MemberDetailsNotifier>(context,listen: false).getDetail();
   }
 
   @override
