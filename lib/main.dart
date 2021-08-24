@@ -1,18 +1,19 @@
-import 'package:flutter_eshopping/providers/change_language_notifier.dart';
-import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'screen/home_screen.dart';
-import 'screen/favorite_screen.dart';
-import 'screen/leftList/drawer_change.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
+import 'screen/home_screen.dart';
+import 'screen/favorite_screen.dart';
+import 'screen/leftList/drawer_change.dart';
+import 'screen/browsingRecords_screen.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
 import 'providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_eshopping/providers/member_notifier.dart';
+import 'package:flutter_eshopping/providers/change_language_notifier.dart';
+import 'package:flutter_eshopping/providers/login_notifier.dart';
+import 'package:flutter_eshopping/providers/browsing_notifier.dart';
 
 Future<void> main() async {
   runApp(
@@ -32,7 +33,10 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<MemberDetailsNotifier>(
           create: (context) => MemberDetailsNotifier(),
-        )
+        ),
+        ChangeNotifierProvider<BrowsingRecordNotify>(
+          create: (context) => BrowsingRecordNotify(),
+        ),
       ],
       child: App(),
     ),
@@ -87,14 +91,15 @@ class _AppState extends State<AppPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
-    /*Search(), Recommend(),*/ Favorite(),
+    /*Search(), Recommend(),*/ Favorite(),BrowsingRecord()
 
   ];
   final List<Widget> _appBar = [
     HomeBar(),
     /*SearchBar(),
     RecommendBar(),*/
-    FavoriteBar()
+    FavoriteBar(),
+    BrowsingRecordsBar(),
   ];
   void onTabTapped(int index) {
     setState(() {
@@ -110,6 +115,7 @@ class _AppState extends State<AppPage> {
     Provider.of<LoginNotifier>(context, listen: false).getLoginStatus();
     Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
     Provider.of<MemberDetailsNotifier>(context,listen: false).getDetail();
+    Provider.of<BrowsingRecordNotify>(context,listen:false ).getBrowsing();
   }
 
   @override
@@ -143,6 +149,8 @@ class _AppState extends State<AppPage> {
               label: S.of(context).newProduct),*/
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: S.of(context).myFavorite),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.history), label: S.of(context).browsingRecords),
         ],
       ),
       drawer: Drawer(
