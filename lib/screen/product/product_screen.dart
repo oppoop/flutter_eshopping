@@ -48,7 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
     selectedSize = product.sizes?.first;
     super.initState();
     _favoriteStatus = favoriteList.contains(product.productID);
-    Provider.of<BrowsingRecordNotify>(context).browsingAdd(product.productID!);
+    Provider.of<BrowsingRecordNotify>(context,listen: false).browsingAdd(product.productID!);
     print(_favoriteStatus);
   }
 

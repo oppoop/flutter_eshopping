@@ -41,7 +41,6 @@ class _FavoriteState extends State<Favorite> {
         favoriteProduct.add(e);
       }
     }).toList();
-    print(favoriteProduct);
   }
 
   @override
@@ -81,9 +80,6 @@ class _FavoriteState extends State<Favorite> {
                         MaterialPageRoute(
                           builder: (context) => MultiProvider(
                             providers: [
-                              ChangeNotifierProvider<FavoriteNotify>(
-                                create: (context) => FavoriteNotify(),
-                              ),
                               ChangeNotifierProvider<ProductNumberNotifier>(
                                 create: (context) => ProductNumberNotifier(),
                               ),
