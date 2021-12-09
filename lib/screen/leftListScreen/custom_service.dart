@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eshopping/utils/permission_request.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
+import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class CustomerCenter extends StatelessWidget {
   @override
@@ -58,9 +58,18 @@ class CustomerCenter extends StatelessWidget {
                   Container(
                       alignment: Alignment.topCenter,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black87)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey.shade300),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(3.0, 3.0), //陰影y軸偏移量
+                              blurRadius: 5, //陰影模糊程度
+                              spreadRadius: 1 //陰影擴散程度
+                              )
+                        ],
+                      ),
                       height: MediaQuery.of(context).size.height * 0.45,
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: controller.imageList.isNotEmpty
@@ -85,7 +94,7 @@ class CustomerCenter extends StatelessWidget {
                                     fontSize: 30, color: Colors.black),
                               ),
                             )),
-                  Padding(padding: EdgeInsets.only(bottom: 10)),
+                  Padding(padding: EdgeInsets.only(bottom: 30)),
                   //Text('請選擇回報類型'),
                   /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -118,12 +127,31 @@ class CustomerCenter extends StatelessWidget {
                   Text('其他'),
                 ],
               ),*/
-                  RaisedButton(
-                    child: Text("拍照或上傳"),
-                    onPressed: () =>
-                        controller.getActionSheet(context: context),
+                  GestureDetector(
+                    onTap: () => controller.getActionSheet(context: context),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 100,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.pink.shade300,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(2.0, 2.0), //陰影y軸偏移量
+                              blurRadius: 3, //陰影模糊程度
+                              spreadRadius: 0.5 //陰影擴散程度
+                              )
+                        ],
+                      ),
+                      child: Text(
+                        '拍照或上傳',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
-                  Padding(padding: EdgeInsets.only(bottom: 10)),
+                  Padding(padding: EdgeInsets.only(bottom: 30)),
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       height: 200.0,
