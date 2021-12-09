@@ -14,33 +14,36 @@ import 'package:flutter_eshopping/providers/member_notifier.dart';
 import 'package:flutter_eshopping/providers/change_language_notifier.dart';
 import 'package:flutter_eshopping/providers/login_notifier.dart';
 import 'package:flutter_eshopping/providers/browsing_notifier.dart';
+import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<LoginNotifier>(
-          create: (context) => LoginNotifier(),
-        ),
-        ChangeNotifierProvider<CartNotifier>(
-          create: (context) => CartNotifier(),
-        ),
-        ChangeNotifierProvider<FavoriteNotify>(
-          create: (context) => FavoriteNotify(),
-        ),
-        ChangeNotifierProvider<LanguageProvider>(
-          create: (context) => LanguageProvider(),
-        ),
-        ChangeNotifierProvider<MemberDetailsNotifier>(
-          create: (context) => MemberDetailsNotifier(),
-        ),
-        ChangeNotifierProvider<BrowsingRecordNotify>(
-          create: (context) => BrowsingRecordNotify(),
-        ),
-      ],
-      child: App(),
-    ),
-  );
+  await initService().then((value) {
+    runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<LoginNotifier>(
+            create: (context) => LoginNotifier(),
+          ),
+          ChangeNotifierProvider<CartNotifier>(
+            create: (context) => CartNotifier(),
+          ),
+          ChangeNotifierProvider<FavoriteNotify>(
+            create: (context) => FavoriteNotify(),
+          ),
+          ChangeNotifierProvider<LanguageProvider>(
+            create: (context) => LanguageProvider(),
+          ),
+          ChangeNotifierProvider<MemberDetailsNotifier>(
+            create: (context) => MemberDetailsNotifier(),
+          ),
+          ChangeNotifierProvider<BrowsingRecordNotify>(
+            create: (context) => BrowsingRecordNotify(),
+          ),
+        ],
+        child: App(),
+      ),
+    );
+  });
 }
 
 class App extends StatelessWidget {
@@ -91,8 +94,8 @@ class _AppState extends State<AppPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
-    /*Search(), Recommend(),*/ Favorite(),BrowsingRecord()
-
+    /*Search(), Recommend(),*/ Favorite(),
+    BrowsingRecord()
   ];
   final List<Widget> _appBar = [
     HomeBar(),
@@ -114,8 +117,8 @@ class _AppState extends State<AppPage> {
     super.initState();
     Provider.of<LoginNotifier>(context, listen: false).getLoginStatus();
     Provider.of<FavoriteNotify>(context, listen: false).getFavorite();
-    Provider.of<MemberDetailsNotifier>(context,listen: false).getDetail();
-    Provider.of<BrowsingRecordNotify>(context,listen:false ).getBrowsing();
+    Provider.of<MemberDetailsNotifier>(context, listen: false).getDetail();
+    Provider.of<BrowsingRecordNotify>(context, listen: false).getBrowsing();
   }
 
   @override
@@ -166,4 +169,8 @@ class _AppState extends State<AppPage> {
       ),
     );
   }
+}
+
+Future<void> initService() async {
+  await GetStorage.init();
 }
