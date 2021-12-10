@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
+import 'package:flutter_eshopping/utils/dialog.dart';
 import 'package:flutter_eshopping/utils/permission_request.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,12 +9,12 @@ import 'package:get_storage/get_storage.dart';
 enum ReportType { errorScreen, errorAccount, others }
 
 class CustomServiceNotify extends ChangeNotifier {
-  final ReadWriteValue storeList = <String>[].val('ReportImage');
+  final ReadWriteValue storeList = [].val('ReportImage');
   final TextEditingController textEditingController = TextEditingController();
   final FocusNode focusNode = FocusNode();
   String _questionsErrorMsg = '';
   int _photoIndex = 0;
-  List<String> _imageList = [];
+  List _imageList = [];
   bool _questionsValid = false;
   ReportType? _report;
 
@@ -23,7 +24,7 @@ class CustomServiceNotify extends ChangeNotifier {
   ];
 
   String get questionsErrorMsg => _questionsErrorMsg;
-  List<String> get imageList => _imageList;
+  List get imageList => _imageList;
   bool get questionsValid => _questionsValid;
   ReportType? get report => _report;
 
@@ -94,5 +95,12 @@ class CustomServiceNotify extends ChangeNotifier {
             ),
           );
         });
+  }
+
+  void sendReport(BuildContext context) async {
+    _imageList = [];
+    storeList.val = [];
+    notifyListeners();
+    textEditingController.text = '';
   }
 }

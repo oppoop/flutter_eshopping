@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 import 'package:flutter_eshopping/utils/dialog.dart';
-import 'package:flutter_eshopping/utils/json_animation.dart';
 import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'history_report_list.dart';
 
 class CustomerCenter extends StatelessWidget {
   @override
@@ -42,23 +43,26 @@ class CustomerCenter extends StatelessWidget {
                               )
                         ],
                       ),
-                      height: MediaQuery.of(context).size.height * 0.45,
+                      height: MediaQuery.of(context).size.height * 0.40,
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: controller.imageList.isNotEmpty
-                          ? GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                              ),
-                              itemCount: controller.imageList.length,
-                              itemBuilder: (context, index) {
-                                return _reportImage(
-                                    context: context,
-                                    img: controller.imageList[index],
-                                    controller: controller);
-                              })
+                          ? MediaQuery.removePadding(
+                              removeTop: true,
+                              context: context,
+                              child: GridView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                  ),
+                                  itemCount: controller.imageList.length,
+                                  itemBuilder: (context, index) {
+                                    return _reportImage(
+                                        context: context,
+                                        img: controller.imageList[index],
+                                        controller: controller);
+                                  })).paddingOnly(top: 25)
                           : Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -137,12 +141,11 @@ class CustomerCenter extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: null,
                       minLines: null,
-                      autofocus: false,
+                      autofocus: true,
                       expands: true,
                       style: new TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.black),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(0),
                         hintText: '請寫下問題',
                         hintStyle:
                             TextStyle(fontSize: 20, color: Colors.grey[500]),
@@ -185,7 +188,7 @@ class CustomerCenter extends StatelessWidget {
                           Future.delayed(Duration(seconds: 1), () {
                             Navigator.pop(context);
                           });
-                        });
+                        }).whenComplete(() => controller.sendReport(context));
                       },
                       text: S().submit),
                   const SizedBox(
@@ -230,7 +233,12 @@ class CustomerCenter extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width * 0.2,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => HistoryReportList(),
+                ),
+              ),
               icon: Icon(
                 Icons.history,
                 color: Colors.white,
@@ -260,8 +268,8 @@ class CustomerCenter extends StatelessWidget {
               child: Image.file(
                 File(img),
                 fit: BoxFit.cover,
-                width: 100.0,
-                height: 70.0,
+                width: 140.0,
+                height: 100.0,
               ),
             ),
           ),
