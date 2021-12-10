@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
+import 'package:flutter_eshopping/utils/dialog.dart';
+import 'package:flutter_eshopping/utils/json_animation.dart';
 import 'package:flutter_eshopping/utils/pop_widget.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -12,51 +14,21 @@ class CustomerCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _customService(context: context),
+      body: _customCenter(context: context),
     );
   }
 
-  Widget _customService({required BuildContext context}) {
+  Widget _customCenter({required BuildContext context}) {
     return Consumer<CustomServiceNotify>(builder: (context, controller, _) {
       return SingleChildScrollView(
         child: Center(
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Colors.pink, Colors.white],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.arrow_back_ios))),
-                    Container(
-                      alignment: Alignment.topCenter,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: Text(
-                        '問題回報',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.2,
-                    ),
-                  ],
-                ).paddingOnly(top: 30),
-              ),
+              _topBar(context: context),
               Column(
                 children: <Widget>[
                   Container(
-                      alignment: Alignment.topCenter,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -82,16 +54,40 @@ class CustomerCenter extends StatelessWidget {
                               ),
                               itemCount: controller.imageList.length,
                               itemBuilder: (context, index) {
-                                return reportImage(
+                                return _reportImage(
                                     context: context,
                                     img: controller.imageList[index],
                                     controller: controller);
                               })
                           : Center(
-                              child: Text(
-                                "尚未上傳圖片",
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.black),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "點擊上傳圖片",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.grey[500]),
+                                  ),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5)),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.error,
+                                        color: Colors.grey[500],
+                                        size: 18,
+                                      ),
+                                      Text(
+                                        "最多上傳 4 張",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.grey[500]),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             )),
                   Padding(padding: EdgeInsets.only(bottom: 30)),
@@ -127,79 +123,74 @@ class CustomerCenter extends StatelessWidget {
                   Text('其他'),
                 ],
               ),*/
-                  GestureDetector(
-                    onTap: () => controller.getActionSheet(context: context),
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.pink.shade300,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(2.0, 2.0), //陰影y軸偏移量
-                              blurRadius: 3, //陰影模糊程度
-                              spreadRadius: 0.5 //陰影擴散程度
-                              )
-                        ],
+                  customButton(
+                      onPressed: () =>
+                          controller.getActionSheet(context: context),
+                      text: '拍照或上傳'),
+                  Padding(padding: EdgeInsets.only(bottom: 30)),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 200.0,
+                    child: TextFormField(
+                      controller: controller.textEditingController,
+                      focusNode: controller.focusNode,
+                      textAlign: TextAlign.center,
+                      maxLines: null,
+                      minLines: null,
+                      autofocus: false,
+                      expands: true,
+                      style: new TextStyle(
+                          fontWeight: FontWeight.normal, color: Colors.black),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(0),
+                        hintText: '請寫下問題',
+                        hintStyle:
+                            TextStyle(fontSize: 20, color: Colors.grey[500]),
+                        border: InputBorder.none,
                       ),
-                      child: Text(
-                        '拍照或上傳',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      onChanged: (text) {
+                        Provider.of<CustomServiceNotify>(context, listen: false)
+                            .questionsValidating(
+                                fieldValue:
+                                    controller.textEditingController.text);
+                      },
+                    ).paddingOnly(left: 10, right: 10, bottom: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey.shade300),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(3.0, 3.0), //陰影y軸偏移量
+                            blurRadius: 5, //陰影模糊程度
+                            spreadRadius: 1 //陰影擴散程度
+                            )
+                      ],
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(bottom: 30)),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height: 200.0,
-                      child: DecoratedBox(
-                        child: TextFormField(
-                          controller: controller.textEditingController,
-                          focusNode: controller.focusNode,
-                          textAlign: TextAlign.center,
-                          maxLines: null,
-                          minLines: null,
-                          autofocus: false,
-                          expands: true,
-                          style: new TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white),
-                          decoration: InputDecoration(
-                            hintText: '請寫下問題',
-                            hintStyle:
-                                TextStyle(fontSize: 30, color: Colors.black),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    (BorderSide(color: Colors.black, width: 2)),
-                                borderRadius: BorderRadius.circular(32.0)),
-                          ),
-                          onChanged: (text) {
-                            Provider.of<CustomServiceNotify>(context,
-                                    listen: false)
-                                .questionsValidating(
-                                    fieldValue:
-                                        controller.textEditingController.text);
-                          },
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32.0),
-                            color: Colors.grey),
-                      )),
                   Padding(padding: EdgeInsets.only(bottom: 10)),
-                  Consumer<CustomServiceNotify>(
-                      builder: (context, questions, _) {
-                    return Text(
-                      '${questions.questionsErrorMsg}',
-                      style: TextStyle(color: Colors.red, fontSize: 20),
-                    );
-                  }),
+                  Text(
+                    '${controller.questionsErrorMsg}',
+                    style: TextStyle(color: Colors.red, fontSize: 15),
+                  ),
                   Padding(padding: EdgeInsets.only(bottom: 20)),
-                  ElevatedButton(onPressed: () {}, child: Text(S().submit))
+                  customButton(
+                      onPressed: () {
+                        ShowDialog.dialogLoading(context);
+                        Future.delayed(Duration(seconds: 3), () {
+                          Navigator.pop(context);
+                        }).whenComplete(() {
+                          ShowDialog.dialogSuccess(context);
+                          Future.delayed(Duration(seconds: 1), () {
+                            Navigator.pop(context);
+                          });
+                        });
+                      },
+                      text: S().submit),
+                  const SizedBox(
+                    height: 50,
+                  ),
                 ],
               ).paddingOnly(top: MediaQuery.of(context).size.height * 0.13)
             ],
@@ -209,7 +200,49 @@ class CustomerCenter extends StatelessWidget {
     });
   }
 
-  Widget reportImage(
+  Widget _topBar({required BuildContext context}) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.3,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.pink, Colors.white],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.arrow_back_ios),
+                color: Colors.white,
+              )),
+          Container(
+            alignment: Alignment.topCenter,
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: Text(
+              '問題回報',
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.2,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.history,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ).paddingOnly(top: 30),
+    );
+  }
+
+  Widget _reportImage(
       {required BuildContext context,
       required String img,
       required CustomServiceNotify controller}) {
@@ -252,6 +285,37 @@ class CustomerCenter extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget customButton(
+      {double height = 40,
+      double width = 100,
+      required Function onPressed,
+      required String text}) {
+    return GestureDetector(
+      onTap: onPressed as void Function(),
+      child: Container(
+        alignment: Alignment.center,
+        width: 100,
+        height: 40,
+        decoration: BoxDecoration(
+          color: Colors.pink.shade300,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black26,
+                offset: Offset(2.0, 2.0), //陰影y軸偏移量
+                blurRadius: 3, //陰影模糊程度
+                spreadRadius: 0.5 //陰影擴散程度
+                )
+          ],
+        ),
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

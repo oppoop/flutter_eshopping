@@ -9,7 +9,6 @@ enum ReportType { errorScreen, errorAccount, others }
 
 class CustomServiceNotify extends ChangeNotifier {
   final ReadWriteValue storeList = <String>[].val('ReportImage');
-  //final storeList = [].val('imageList');
   final TextEditingController textEditingController = TextEditingController();
   final FocusNode focusNode = FocusNode();
   String _questionsErrorMsg = '';
@@ -75,7 +74,7 @@ class CustomServiceNotify extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getActionSheet({required BuildContext context}) async {
+  void getActionSheet({required BuildContext context}) async {
     await showModalBottomSheet(
         context: context,
         builder: (ctx) {
