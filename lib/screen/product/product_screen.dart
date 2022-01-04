@@ -1,25 +1,25 @@
-import 'package:flutter_eshopping/data_model/category.dart';
-import 'package:flutter_eshopping/data_model/product.dart';
-import 'package:flutter_eshopping/generated/l10n.dart';
-import 'package:flutter_eshopping/providers/cart_notifier.dart';
-import 'package:flutter_eshopping/screen/cart/app_bar.dart';
-import 'package:flutter_eshopping/data_model/order_item.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eshopping/temp_data.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_eshopping/data_model/category.dart';
+import 'package:flutter_eshopping/data_model/order_item.dart';
+import 'package:flutter_eshopping/data_model/product.dart';
+import 'package:flutter_eshopping/generated/l10n.dart';
 import 'package:flutter_eshopping/model/textfied_look.dart';
-import 'call_action.dart';
-import 'product_support.dart';
+import 'package:flutter_eshopping/providers/browsing_notifier.dart';
+import 'package:flutter_eshopping/providers/cart_notifier.dart';
 import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
 import 'package:flutter_eshopping/providers/product_size_notifier.dart';
-import 'package:flutter_eshopping/providers/browsing_notifier.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'product_details.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_eshopping/screen/cart/app_bar.dart';
+import 'package:flutter_eshopping/temp_data.dart';
 import 'package:flutter_eshopping/utils/image_viwer_online.dart';
-import 'package:flutter_eshopping/utils/app_libs.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'call_action.dart';
+import 'product_details.dart';
+import 'product_supportopping/utils/app_libs.dart';
 
 class ProductScreen extends StatefulWidget {
   ProductScreen({required this.product});
@@ -48,7 +48,8 @@ class _ProductScreenState extends State<ProductScreen> {
     selectedSize = product.sizes?.first;
     super.initState();
     _favoriteStatus = favoriteList.contains(product.productID);
-    Provider.of<BrowsingRecordNotify>(context,listen: false).browsingAdd(product.productID!);
+    Provider.of<BrowsingRecordNotify>(context, listen: false)
+        .browsingAdd(product.productID!);
     print(_favoriteStatus);
   }
 
@@ -129,13 +130,11 @@ class _ProductScreenState extends State<ProductScreen> {
                           groupValue: _sizeValue,
                           value: product.sizes![index],
                           onChanged: (value) {
-                            setState(() {
-                              _sizeValue = product.sizes![index];
-                              Provider.of<ProductSizeNotifier>(context,
-                                      listen: false)
-                                  .sizeSelect(sizeValue: _sizeValue);
-                              print(_sizeValue);
-                            });
+                            _sizeValue = product.sizes![index];
+                            Provider.of<ProductSizeNotifier>(context,
+                                    listen: false)
+                                .sizeSelect(sizeValue: _sizeValue);
+                            print(_sizeValue);
                           },
                         ),
                       );
@@ -259,18 +258,14 @@ class _ProductScreenState extends State<ProductScreen> {
                         )),
                     IconButton(
                         onPressed: () async {
-                          setState(() {
-                            _favoriteStatus = !_favoriteStatus!;
-                            if (_favoriteStatus!) {
-                              Provider.of<FavoriteNotify>(context,
-                                      listen: false)
-                                  .favoriteAdd(product.productID!);
-                            } else {
-                              Provider.of<FavoriteNotify>(context,
-                                      listen: false)
-                                  .favoriteRemove(product.productID!);
-                            }
-                          });
+                          _favoriteStatus = !_favoriteStatus!;
+                          if (_favoriteStatus!) {
+                            Provider.of<FavoriteNotify>(context, listen: false)
+                                .favoriteAdd(product.productID!);
+                          } else {
+                            Provider.of<FavoriteNotify>(context, listen: false)
+                                .favoriteRemove(product.productID!);
+                          }
                         },
                         icon: _favoriteStatus!
                             ? Icon(

@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_eshopping/providers/login_notifier.dart';
-import 'drawer_header.dart';
-import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
-import 'package:flutter_eshopping/providers/member_notifier.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter_eshopping/generated/l10n.dart';
-import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
 import 'package:flutter_eshopping/providers/change_language_notifier.dart';
+import 'package:flutter_eshopping/providers/custom_service_notifier.dart';
+import 'package:flutter_eshopping/providers/login_notifier.dart';
+import 'package:flutter_eshopping/screen/leftListScreen/custom_service.dart';
 import 'package:flutter_eshopping/screen/memberCenter/login_screen.dart';
+import 'package:flutter_eshopping/screen/memberCenter/member_center.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'drawer_header.dart';
 
 class DrawerChange extends StatefulWidget {
   @override
@@ -196,19 +196,15 @@ class _DrawerChange extends State<DrawerChange> {
                         },
                       ),
                       ListTile(
-                        leading: Icon(Icons.star),
-                        title: Text(
-                          S().logOut,
-                          style: GoogleFonts.notoSerif()
-                              .copyWith(fontSize: _listSize),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            Provider.of<LoginNotifier>(context, listen: false)
-                                .loginOutNotifier();
-                          });
-                        },
-                      ),
+                          leading: Icon(Icons.star),
+                          title: Text(
+                            S().logOut,
+                            style: GoogleFonts.notoSerif()
+                                .copyWith(fontSize: _listSize),
+                          ),
+                          onTap: () =>
+                              Provider.of<LoginNotifier>(context, listen: false)
+                                  .loginOutNotifier()),
                     ],
                   ),
                 ),
@@ -221,15 +217,13 @@ class _DrawerChange extends State<DrawerChange> {
               value: _selectLocal,
               items: _localList(),
               onChanged: (dynamic T) {
-                setState(() {
-                  _selectLocal = T;
-                  if (T == Locale('zh', 'TW'))
-                    Provider.of<LanguageProvider>(context, listen: false)
-                        .changeLanguage(locale: Locale('zh', 'TW'));
-                  if (T == Locale('en'))
-                    Provider.of<LanguageProvider>(context, listen: false)
-                        .changeLanguage(locale: Locale('en'));
-                });
+                _selectLocal = T;
+                if (T == Locale('zh', 'TW'))
+                  Provider.of<LanguageProvider>(context, listen: false)
+                      .changeLanguage(locale: Locale('zh', 'TW'));
+                if (T == Locale('en'))
+                  Provider.of<LanguageProvider>(context, listen: false)
+                      .changeLanguage(locale: Locale('en'));
               },
             ),
           )
