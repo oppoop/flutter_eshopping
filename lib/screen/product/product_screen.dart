@@ -12,6 +12,7 @@ import 'package:flutter_eshopping/providers/favorite_notifier.dart';
 import 'package:flutter_eshopping/providers/product_number_notifier.dart';
 import 'package:flutter_eshopping/providers/product_size_notifier.dart';
 import 'package:flutter_eshopping/screen/cart/app_bar.dart';
+import 'package:flutter_eshopping/screen/product/product_support.dart';
 import 'package:flutter_eshopping/temp_data.dart';
 import 'package:flutter_eshopping/utils/image_viwer_online.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +20,6 @@ import 'package:provider/provider.dart';
 
 import 'call_action.dart';
 import 'product_details.dart';
-import 'product_supportopping/utils/app_libs.dart';
 
 class ProductScreen extends StatefulWidget {
   ProductScreen({required this.product});
